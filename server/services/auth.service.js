@@ -15,7 +15,6 @@ const {
   createUserDb,
   createUserGoogleDb,
 } = require("../db/user.db");
-const { createCartDb } = require("../db/cart.db");
 const mail = require("./mail.service");
 const { OAuth2Client } = require("google-auth-library");
 const crypto = require("crypto");
@@ -51,16 +50,13 @@ class AuthService {
           password: hashedPassword,
         });
 
-        const { id: cart_id } = await createCartDb(newUser.user_id);
         const token = await this.signToken({
           id: newUser.user_id,
           roles: newUser.roles,
-          cart_id,
         });
         const refreshToken = await this.signRefreshToken({
           id: newUser.user_id,
           roles: newUser.roles,
-          cart_id,
         });
 
         return {
@@ -101,7 +97,6 @@ class AuthService {
         password: dbPassword,
         user_id,
         roles,
-        cart_id,
         fullname,
         username,
       } = user;
@@ -111,11 +106,10 @@ class AuthService {
         throw new ErrorHandler(403, "Email or password incorrect.");
       }
 
-      const token = await this.signToken({ id: user_id, roles, cart_id });
+      const token = await this.signToken({ id: user_id, roles});
       const refreshToken = await this.signRefreshToken({
         id: user_id,
         roles,
-        cart_id,
       });
       return {
         token,
@@ -146,22 +140,19 @@ class AuthService {
             email,
             name,
           });
-          await createCartDb(user.user_id);
           await mail.signupMail(user.email, user.fullname.split(" ")[0]);
         }
-        const { user_id, cart_id, roles, fullname, username } =
+        const { user_id, roles, fullname, username } =
           await getUserByEmailDb(email);
 
         const token = await this.signToken({
           id: user_id,
           roles,
-          cart_id,
         });
 
         const refreshToken = await this.signRefreshToken({
           id: user_id,
           roles,
-          cart_id,
         });
 
         return {
@@ -313,7 +304,6 @@ class AuthService {
       return {
         id: payload.id,
         roles: payload.roles,
-        cart_id: payload.cart_id,
       };
     } catch (error) {
       logger.error(error);

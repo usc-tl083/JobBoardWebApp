@@ -46,7 +46,7 @@ const createTransporter = async () => {
 
 const url =
     process.env.NODE_ENV === "production"
-        ? "https://pern-store.netlify.app"
+        ? "https://job-seeker.netlify.app"
         : "http://localhost:3000";
 
 const signupMail = async (to, name) => {
@@ -92,8 +92,9 @@ const forgotPasswordMail = async (token, email) => {
         </p>`,
         };
 
-        const emailTransporter = await createTransporter();
-        return await emailTransporter.sendMail(message);
+        // const emailTransporter = await createTransporter();
+        // return await emailTransporter.sendMail(message);
+        console.log(token);
     } catch (error) {
         logger.error(error);
         throw new ErrorHandler(500, error.message);
@@ -109,8 +110,9 @@ const resetPasswordMail = async (email) => {
             html: "<p>Your password has been changed successfully.</p>",
         };
 
-        const emailTransporter = await createTransporter();
-        await emailTransporter.sendMail(message);
+        // const emailTransporter = await createTransporter();
+        // await emailTransporter.sendMail(message);
+        console.log(message);
     } catch (error) {
         logger.error(error);
         throw new ErrorHandler(500, error.message);
