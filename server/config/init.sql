@@ -11,12 +11,11 @@ CREATE TABLE public."resetTokens"
 CREATE TABLE public.users
 (
     user_id SERIAL NOT NULL,
-    password character varying(200),
-    email character varying(100) UNIQUE NOT NULL,
-    fullname character varying(100) NOT NULL,
     username character varying(50) UNIQUE NOT NULL,
-    google_id character varying(100) UNIQUE,
-    roles character varying(10)[] DEFAULT '{customer}'::character varying[] NOT NULL,
+    email character varying(100) UNIQUE NOT NULL,
+    password character varying(200),
+    fullname character varying(100) NOT NULL,
+    roles character varying(10)[] DEFAULT '{seeker}'::character varying[] NOT NULL,
     address character varying(200),
     city character varying(100),
     state character varying(100),

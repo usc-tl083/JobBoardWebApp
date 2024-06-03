@@ -15,13 +15,23 @@ const createUserDb = async ({ username, password, email, fullname }) => {
   return user[0];
 };
 
-// const getUserByIdDb = async (id) => {
-//   const { rows: user } = await pool.query(
-//     "select users.*, cart.id as cart_id from users left join cart on cart.user_id = users.user_id where users.user_id = $1",
-//     [id]
-//   );
-//   return user[0];
-// };
+const createUserFullDb = async ({ username, password, email, fullname, roles, address, city, state, country }) => {
+  const { rows: user } = await pool.query(
+    `INSERT INTO users(username, password, email, fullname, roles, address, city, state, country)
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    returning user_id, username, email, fullname, roles, address, city, state, country, created_at`,
+    [username, password, email, fullname, roles, address, city, state, country]
+  );
+  return user[0];
+};
+
+const getUserByIdDb = async (id) => {
+  const { rows: user } = await pool.query(
+    "select * from users where user_id = $1",
+    [id]
+  );
+  return user[0];
+};
 
 const getUserByUsernameDb = async (username) => {
   const { rows: user } = await pool.query(
@@ -65,16 +75,6 @@ const deleteUserDb = async (id) => {
   return user[0];
 };
 
-const createUserGoogleDb = async ({ sub, defaultUsername, email, name }) => {
-  const { rows } = await pool.query(
-    `INSERT INTO users(google_id,username, email, fullname) 
-      VALUES($1, $2, $3, $4) ON CONFLICT (email) 
-      DO UPDATE SET google_id = $1, fullname = $4 returning *`,
-    [sub, defaultUsername, email, name]
-  );
-  return rows[0];
-};
-
 const changeUserPasswordDb = async (hashedPassword, email) => {
   return await pool.query("update users set password = $1 where email = $2", [
     hashedPassword,
@@ -84,11 +84,11 @@ const changeUserPasswordDb = async (hashedPassword, email) => {
 
 module.exports = {
   getAllUsersDb,
-  // getUserByIdDb,
+  getUserByIdDb,
   getUserByEmailDb,
   updateUserDb,
   createUserDb,
-  createUserGoogleDb,
+  createUserFullDb,
   deleteUserDb,
   getUserByUsernameDb,
   changeUserPasswordDb,

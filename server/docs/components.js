@@ -7,6 +7,156 @@ module.exports = {
                 description: "An id of a model", // desc
                 example: 2, // example of an id
             },
+            User: {
+                type: "object", // data type
+                properties: {
+                    user_id: {
+                        type: "number", // data-type
+                        description: "User identification number", // desc
+                        example: "23", // example of an id
+                    },
+                    fullname: {
+                        type: "string", // data-type
+                        description: "User's fullname", // desc
+                        example: "John Doe", // example of a title
+                    },
+                    email: {
+                        type: "string", // data-type
+                        description: "User's email", // desc
+                        example: "johndoe@email.com", // example of a title
+                    },
+                    roles: {
+                        type: "array", // data-type
+                        items: {
+                            type: "string",
+                            enum: ["admin", "seeker"],
+                            default: "seeker",
+                        },
+                        description: "User's roles", // desc
+                        example: ["admin"], // example of a title
+                    },
+                    username: {
+                        type: "string", // data-type
+                        description: "User's username", // desc
+                        example: "JohnD", // example of a title
+                    },
+                    address: {
+                        type: "string", // data type
+                        description: "User's shipping address", // desc
+                        example: "317  Lang Avenue", // example of a completed value
+                    },
+                    city: {
+                        type: "string", // data type
+                        description: "User's address city", // desc
+                        example: "Portage", // example of a completed value
+                    },
+                    state: {
+                        type: "string", // data type
+                        description: "State name", // desc
+                        example: "Utah", // example of a completed value
+                    },
+                    country: {
+                        type: "string", // data type
+                        description: "Country name", // desc
+                        example: "UK", // example of a completed value
+                    },
+                },
+            },
+            UserCreate: {
+                type: "object", // data type
+                properties: {
+                    fullname: {
+                        type: "string", // data-type
+                        description: "User's fullname", // desc
+                        example: "John Doe", // example of a title
+                    },
+                    email: {
+                        type: "string", // data-type
+                        description: "User's email", // desc
+                        example: "johndoe@email.com", // example of a title
+                    },
+                    roles: {
+                        type: "array", // data-type
+                        items: {
+                            type: "string",
+                            enum: ["admin", "seeker"],
+                            default: "seeker",
+                        },
+                        description: "User's roles", // desc
+                        example: ["admin"], // example of a title
+                    },
+                    username: {
+                        type: "string", // data-type
+                        description: "User's username", // desc
+                        example: "JohnD", // example of a title
+                    },
+                    password: {
+                        type: "string", // data-type
+                        description: "User's password", // desc
+                        example: "Password123", // example of a title
+                    },
+                    address: {
+                        type: "string", // data type
+                        description: "User's shipping address", // desc
+                        example: "317  Lang Avenue", // example of a completed value
+                    },
+                    city: {
+                        type: "string", // data type
+                        description: "User's address city", // desc
+                        example: "Portage", // example of a completed value
+                    },
+                    state: {
+                        type: "string", // data type
+                        description: "State name", // desc
+                        example: "Utah", // example of a completed value
+                    },
+                    country: {
+                        type: "string", // data type
+                        description: "Country name", // desc
+                        example: "UK", // example of a completed value
+                    },
+                },
+            },
+            UserUpdate: {
+                type: "object", // data type
+                properties: {
+                    fullname: {
+                        type: "string", // data-type
+                        description: "User's fullname", // desc
+                        example: "John Doe", // example of a title
+                    },
+                    email: {
+                        type: "string", // data-type
+                        description: "User's email", // desc
+                        example: "johndoe@email.com", // example of a title
+                    },
+                    username: {
+                        type: "string", // data-type
+                        description: "User's username", // desc
+                        example: "JohnD", // example of a title
+                    },
+                    address: {
+                        type: "string", // data type
+                        description: "User's shipping address", // desc
+                        example: "317  Lang Avenue", // example of a completed value
+                    },
+                    city: {
+                        type: "string", // data type
+                        description: "User's address city", // desc
+                        example: "Portage", // example of a completed value
+                    },
+                    state: {
+                        type: "string", // data type
+                        description: "State name", // desc
+                        example: "Utah", // example of a completed value
+                    },
+                    country: {
+                        type: "string", // data type
+                        description: "Country name", // desc
+                        example: "UK", // example of a completed value
+                    },
+                },
+            },
             // login input model
             LoginInput: {
                 type: "object", // data type

@@ -13,10 +13,8 @@ const {
   getUserByEmailDb,
   getUserByUsernameDb,
   createUserDb,
-  createUserGoogleDb,
 } = require("../db/user.db");
 const mail = require("./mail.service");
-const { OAuth2Client } = require("google-auth-library");
 const crypto = require("crypto");
 const moment = require("moment");
 const { logger } = require("../utils/logger");
@@ -89,10 +87,6 @@ class AuthService {
         throw new ErrorHandler(403, "Email or password incorrect.");
       }
 
-      if (user.google_id && !user.password) {
-        throw new ErrorHandler(403, "Login in with Google");
-      }
-
       const {
         password: dbPassword,
         user_id,
@@ -122,53 +116,6 @@ class AuthService {
       };
     } catch (error) {
       throw new ErrorHandler(error.statusCode, error.message);
-    }
-  }
-
-  async googleLogin(code) {
-    try {
-      const ticket = await this.verifyGoogleIdToken(code);
-      const { name, email, sub } = ticket.getPayload();
-      const defaultUsername = name.replace(/ /g, "").toLowerCase();
-
-      try {
-        const user = await getUserByEmailDb(email);
-        if (!user?.google_id) {
-          const user = await createUserGoogleDb({
-            sub,
-            defaultUsername,
-            email,
-            name,
-          });
-          await mail.signupMail(user.email, user.fullname.split(" ")[0]);
-        }
-        const { user_id, roles, fullname, username } =
-          await getUserByEmailDb(email);
-
-        const token = await this.signToken({
-          id: user_id,
-          roles,
-        });
-
-        const refreshToken = await this.signRefreshToken({
-          id: user_id,
-          roles,
-        });
-
-        return {
-          token,
-          refreshToken,
-          user: {
-            user_id,
-            fullname,
-            username,
-          },
-        };
-      } catch (error) {
-        throw new ErrorHandler(error.statusCode, error.message);
-      }
-    } catch (error) {
-      throw new ErrorHandler(401, error.message);
     }
   }
 
@@ -263,26 +210,9 @@ class AuthService {
     }
   }
 
-  async verifyGoogleIdToken(code) {
-    // https://github.com/MomenSherif/react-oauth/issues/12#issuecomment-1131408898
-    const oauthClient = new OAuth2Client(
-      process.env.OAUTH_CLIENT_ID,
-      process.env.OAUTH_CLIENT_SECRET,
-      "postmessage"
-    );
-    const { tokens } = await oauthClient.getToken(code);
-
-    const ticket = await oauthClient.verifyIdToken({
-      idToken: tokens.id_token,
-      audience: process.env.OAUTH_CLIENT_ID,
-    });
-
-    return ticket;
-  }
-
   async signToken(data) {
     try {
-      return jwt.sign(data, process.env.SECRET, { expiresIn: "60s" });
+      return jwt.sign(data, process.env.SECRET, { expiresIn: "18h" });
     } catch (error) {
       logger.error(error);
       throw new ErrorHandler(500, "An error occurred");

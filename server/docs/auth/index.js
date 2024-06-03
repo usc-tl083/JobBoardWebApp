@@ -1,4 +1,3 @@
-const googleLogin = require("./googleLogin");
 const login = require("./login");
 const signup = require("./signup");
 const checkToken = require("./check-token");
@@ -12,9 +11,6 @@ module.exports = {
   },
   "/auth/signup": {
     ...signup,
-  },
-  "/auth/google": {
-    ...googleLogin,
   },
   "/auth/refresh-token": {
     ...refreshToken,

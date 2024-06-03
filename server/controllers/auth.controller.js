@@ -40,17 +40,6 @@ const loginUser = async (req, res) => {
   });
 };
 
-const googleLogin = async (req, res) => {
-  const { code } = req.body;
-
-  const user = await authService.googleLogin(code);
-  res.header("auth-token", user.token);
-  res.cookie("refreshToken", user.refreshToken, {
-    httpOnly: true,
-  });
-  res.json(user);
-};
-
 const forgotPassword = async (req, res) => {
   const { email } = req.body;
 
@@ -104,7 +93,6 @@ const resetPassword = async (req, res) => {
 module.exports = {
   createAccount,
   loginUser,
-  googleLogin,
   forgotPassword,
   verifyResetToken,
   resetPassword,

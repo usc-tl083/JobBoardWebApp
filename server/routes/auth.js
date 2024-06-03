@@ -2,7 +2,6 @@ const router = require("express").Router();
 const {
   createAccount,
   loginUser,
-  googleLogin,
   forgotPassword,
   verifyResetToken,
   resetPassword,
@@ -12,8 +11,6 @@ const {
 router.post("/signup", createAccount);
 
 router.post("/login", loginUser);
-
-router.post("/google", googleLogin);
 
 router.post("/forgot-password", forgotPassword);
 
