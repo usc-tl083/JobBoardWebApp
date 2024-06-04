@@ -23,13 +23,13 @@ module.exports = {
                     email: {
                         type: "string", // data-type
                         description: "User's email", // desc
-                        example: "johndoe@email.com", // example of a title
+                        example: "user@email.com", // example of a title
                     },
                     roles: {
                         type: "array", // data-type
                         items: {
                             type: "string",
-                            enum: ["admin", "seeker"],
+                            enum: ["admin", "seeker", "employer"],
                             default: "seeker",
                         },
                         description: "User's roles", // desc
@@ -42,7 +42,7 @@ module.exports = {
                     },
                     address: {
                         type: "string", // data type
-                        description: "User's shipping address", // desc
+                        description: "User's address", // desc
                         example: "317  Lang Avenue", // example of a completed value
                     },
                     city: {
@@ -79,7 +79,7 @@ module.exports = {
                         type: "array", // data-type
                         items: {
                             type: "string",
-                            enum: ["admin", "seeker"],
+                            enum: ["admin", "seeker", "employer"],
                             default: "seeker",
                         },
                         description: "User's roles", // desc
@@ -97,7 +97,7 @@ module.exports = {
                     },
                     address: {
                         type: "string", // data type
-                        description: "User's shipping address", // desc
+                        description: "User's address", // desc
                         example: "317  Lang Avenue", // example of a completed value
                     },
                     city: {
@@ -137,7 +137,7 @@ module.exports = {
                     },
                     address: {
                         type: "string", // data type
-                        description: "User's shipping address", // desc
+                        description: "User's address", // desc
                         example: "317  Lang Avenue", // example of a completed value
                     },
                     city: {
@@ -163,11 +163,11 @@ module.exports = {
                 properties: {
                     email: {
                         type: "string", // data type
-                        example: "johndoe@email.com", // example of a title
+                        example: "user@email.com", // example of a title
                     },
                     password: {
                         type: "string",
-                        example: "^@wra@m+SrNs!lS",
+                        example: "password123",
                     },
                 },
             },
@@ -209,6 +209,96 @@ module.exports = {
                     },
                     password: {
                         type: "string",
+                    },
+                },
+            },
+            JobPostingsList: {
+                type: "object", // data type
+                properties: {
+                    job_id: {
+                        type: "integer", // data-type
+                        description: "job_id", // desc
+                        example: "1",
+                    },
+                    title: {
+                        type: "string", // data-type
+                        description: "Job Title", // desc
+                        example: "Frontend Developer"
+                    },
+                    description: {
+                        type: "string", // data-type
+                        description: "Job Description", // desc
+                        example: "ReactJS and NUXTjs"
+                    },
+                    requirements: {
+                        type: "string", // data-type
+                        description: "Job Requirements", // desc
+                        example: "The requirements of the job are......"
+                    },
+                    salary: {
+                        type: "number", // data-type
+                        description: "Salary", // desc
+                        example: 50000.00
+                    },
+                    location: {
+                        type: "string", // data-type
+                        description: "Location", // desc
+                        example: "Kathmandu"
+                    },
+                    job_type: {
+                        type: "string", // data-type
+                        description: "part-time, full-time, freelance", // desc
+                        example: "full-time"
+                    },
+                    application_deadline: {
+                        type: "string", // data-type
+                        format: "date",
+                        description: "date", // desc
+                    },
+                    test_property: {
+                        type: "string",
+                        description: "description",
+                    }
+                },
+            },
+            JobPostUpdate: {
+                type: "object", // data type
+                properties: {
+                    title: {
+                        type: "string", // data-type
+                        description: "Job Title", // desc
+                        example: "Backend Developer", // example of a title
+                    },
+                    description: {
+                        type: "string", // data-type
+                        description: "Job Description", // desc
+                        example: "Django, FastAPI, Flask", // example of a title
+                    },
+                    requirements: {
+                        type: "string", // data-type
+                        description: "Job's requirements", // desc
+                        example: "This job requires ............", // example of a title
+                    },
+                    salary: {
+                        type: "number", // data type
+                        description: "Job's salary", // desc
+                        example: 20000.00, // example of a completed value
+                    },
+                    location: {
+                        type: "string", // data type
+                        description: "Job's location", // desc
+                        example: "Kathmandu", // example of a completed value
+                    },
+                    job_type: {
+                        type: "string", // data type
+                        description: "Job type", // desc
+                        example: "full-time", // example of a completed value
+                    },
+                    application_deadline: {
+                        type: "string", // data type
+                        format: "date",
+                        description: "Job post's deadline", // desc
+                        example: "2024-7-14", // example of a completed value
                     },
                 },
             },

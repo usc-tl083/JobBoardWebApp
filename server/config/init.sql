@@ -23,3 +23,19 @@ CREATE TABLE public.users
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id)
 );
+
+CREATE TABLE public.job_postings
+(
+    job_id SERIAL NOT NULL,
+    employer_id integer NOT NULL,
+    title character varying(100) NOT NULL,
+    description text NOT NULL,
+    requirements text NOT NULL,
+    salary real,
+    location character varying(100) NOT NULL,
+    job_type character varying(50) NOT NULL CHECK (job_type IN ('full-time', 'part-time', 'freelance')),
+    application_deadline date NOT NULL,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (job_id),
+    FOREIGN KEY (employer_id) REFERENCES public.users (user_id) ON DELETE CASCADE
+);

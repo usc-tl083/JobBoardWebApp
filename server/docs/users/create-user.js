@@ -10,16 +10,6 @@ module.exports = {
         JWT: [],
       },
     ],
-    // parameters: [
-    //   {
-    //     name: "user",
-    //     in: "body",
-    //     description: "Details of user to be created",
-    //     schema: {
-    //       $ref: "#/components/schemas/UserCreate",
-    //     },
-    //   },
-    // ], // expected params
     requestBody: {
       // expected request body
       content: {

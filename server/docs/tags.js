@@ -8,5 +8,9 @@ module.exports = {
             name: "Users",
             description: "API for users",
         },
+        {
+            name: "Job Postings",
+            description: "API for Job Postings"
+        },
     ],
 };

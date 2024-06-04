@@ -1,0 +1,118 @@
+const {
+    getAllJobPostingsDb,
+    createJobPostingDb,
+    getJobPostingByIdDb,
+    getJobPostingByEmployerIdDb,
+    getJobPostingsByTitleDb,
+    getJobPostingsByJobTypeDb,
+    getJobPostingsByLocationDb,
+    updateJobPostingDb,
+    deleteJobPostingDb,
+} = require("../db/jobPosting.db");
+const { ErrorHandler } = require("../helpers/error");
+
+class JobPostingService {
+    getAllJobPostings = async (page) => {
+        const limit = 10;
+        const offset = (page - 1) * limit;
+        try {
+            return await getAllJobPostingsDb({ limit, offset });
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, error.message);
+        }
+    };
+
+    createJobPosting = async (data) => {
+        try {
+            return await createJobPostingDb(data);
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, error.message);
+        }
+    };
+
+    getJobPostingById = async (id) => {
+        try {
+            const jobPosting = await getJobPostingByIdDb(id);
+            if (!jobPosting) {
+                throw new ErrorHandler(404, "job post not found");
+            }
+            return jobPosting;
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, error.message);
+        }
+    };
+
+    getJobPostingByEmployerId = async (id) => {
+        try {
+            const jobPosting = await getJobPostingByEmployerIdDb(id);
+            if (!jobPosting) {
+                throw new ErrorHandler(error.statusCode, "job post not found");
+            }
+            return jobPosting;
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, error.message);
+        }
+    };
+
+    getJobPostingByTitle = async (title) => {
+        try {
+            const jobPosting = await getJobPostingsByTitleDb(title);
+            if (!jobPosting) {
+                throw new ErrorHandler(error.statusCode, "job post not found");
+            }
+            return jobPosting;
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, error.message);
+        }
+    };
+
+    getJobPostingByJobType = async (job_type) => {
+        try {
+            const jobPosting = await getJobPostingsByJobTypeDb(job_type);
+            if (!jobPosting) {
+                throw new ErrorHandler(error.statusCode, "job post not found");
+            }
+            return jobPosting;
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, error.message);
+        }
+    };
+
+    getJobPostingsByLocation = async (location) => {
+        try {
+            const jobPosting = await getJobPostingsByLocationDb(location);
+            if (!jobPosting) {
+                throw new ErrorHandler(error.statusCode, "job post not found");
+            }
+            return jobPosting;
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, error.message);
+        }
+    };
+
+    updateJobPosting = async (data) => {
+        try {
+            const job_posting = await getJobPostingByIdDb(data.id);
+            if (!job_posting) {
+                throw new ErrorHandler(400, "job post not found");
+            }
+            return await updateJobPostingDb(data);
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, error.message);
+        }
+    };
+
+    deleteJobPosting = async (id) => {
+        try {
+            const job_posting = await getJobPostingByIdDb(id);
+            if (!job_posting) {
+                throw new ErrorHandler(404, "job post not found");
+            }
+            return await deleteJobPostingDb(id);
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, error.message);
+        }
+    };
+};
+
+module.exports = new JobPostingService();
