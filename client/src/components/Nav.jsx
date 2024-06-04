@@ -19,7 +19,12 @@ const Nav = () => {
                         <li>
                             <Link to="/login">
                                 <Button layout="link">
-                                    <span>login</span>
+                                    <span>Login</span>
+                                </Button>
+                            </Link>
+                            <Link to="/signup">
+                                <Button layout="link">
+                                    <span>Sign up</span>
                                 </Button>
                             </Link>
                         </li>
@@ -28,6 +33,13 @@ const Nav = () => {
 
                 {isLoggedIn && (
                     <>
+                        <li>
+                            <Link to="/">
+                                <Button layout="link">
+                                    <span>Profile</span>
+                                </Button>
+                            </Link>
+                        </li>
                         <li className="relative">
                             <Button layout="link" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                                 <span className="lg:block hidden">Account</span>
@@ -46,16 +58,6 @@ const Nav = () => {
                                     <DropdownItem className="cursor-not-allowed text-gray-400 border-b flex flex-col items-start justify-start">
                                         <p className="self-start">{userData?.fullname?.split(" ").join(" ")}</p>
                                         <p className="self-start">@{userData?.username}</p>
-                                    </DropdownItem>
-                                    <DropdownItem tag="a">
-                                        <Link className="w-full" to="/profile">
-                                            Profile
-                                        </Link>
-                                    </DropdownItem>
-                                    <DropdownItem tag="a">
-                                        <Link className="w-full" to="/orders">
-                                            Orders
-                                        </Link>
                                     </DropdownItem>
                                     <DropdownItem tag="a" className="border-t">
                                         <Link className="w-full" onClick={() => logout()} to="/login">

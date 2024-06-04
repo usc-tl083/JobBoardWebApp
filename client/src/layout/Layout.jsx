@@ -10,22 +10,22 @@ const Layout = ({ children, title, loading }) => {
                 <title>{title ?? "Home"} | JOB BOARD </title>
                 <meta
                     name="description"
-                    content="E-commerce store built with React, Node, Express and Postgres"
+                    content="Job board application built with React, Node, Express and Postgres"
                 />
                 <meta
                     name="robots"
                     content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
                 />
-                <link rel="canonical" href="https://pern-store.netlify.app/" />
+                <link rel="canonical" href="https://job-board.netlify.app/" />
                 <meta property="og:locale" content="en_US" />
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="PERN Store" />
+                <meta property="og:title" content="JOB BOARD" />
                 <meta
                     property="og:description"
-                    content="E-commerce store built with React, Node, Express and Postgres"
+                    content="Job board application built with React, Node, Express and Postgres"
                 />
-                <meta property="og:url" content="https://pern-store.netlify.app/" />
-                <meta property="og:site_name" content="PERN Store" />
+                <meta property="og:url" content="https://job-board.netlify.app/" />
+                <meta property="og:site_name" content="JOB BOARD" />
                 <meta property="og:image" content="android-chrome-512x512.png" />
                 <meta property="og:image:secure_url" content="android-chrome-512x512.png" />
                 <meta name="twitter:card" content="summary_large_image" />
@@ -33,9 +33,9 @@ const Layout = ({ children, title, loading }) => {
                 <meta name="twitter:creator" content="@_odunsi_" />
                 <meta
                     name="twitter:description"
-                    content="E-commerce store built with React, Node, Express and Postgres"
+                    content="Job board application built with React, Node, Express and Postgres"
                 />
-                <meta name="twitter:title" content="PERN Store" />
+                <meta name="twitter:title" content="JOB BOARD" />
                 <meta name="twitter:image" content="android-chrome-512x512.png" />
                 <style type="text/css">{`
         html,body{
@@ -57,15 +57,7 @@ const Layout = ({ children, title, loading }) => {
 
                 <footer className="mt-auto flex justify-center py-2">
                     <p className="text-sm text-gray-600 sm:ml-4 sm:pl-4 sm:py-2 sm:mt-0 mt-4">
-                        &copy; {new Date().getFullYear()} JOB BOARD —
-                        <a
-                            href="https://github.com/dhatguy"
-                            className="text-gray-500 ml-1"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            @dhatGuy
-                        </a>
+                        &copy; {new Date().getFullYear()} JOB BOARD APPLICATION
                     </p>
                 </footer>
             </div>

@@ -110,15 +110,15 @@ const Login = () => {
                             {error}
                         </HelperText>
                     )}
-                    {/* <div className="mt-4">
-                        <ForgotPasswordModal />
-                    </div> */}
+                    <div className="mt-4">
+                        {/* <ForgotPasswordModal /> */}
+                    </div>
                     <Button type="submit" disabled={isLoading}>
                         {isLoading ? <PulseLoader color={"#0a138b"} size={10} loading /> : "Login"}
                     </Button>
                     <p className="text-sm mt-4">
                         Don&apos;t have an account?{" "}
-                        <Link to="/" className="font-bold">
+                        <Link to="/signup" className="font-bold">
                             Sign Up
                         </Link>
                     </p>
