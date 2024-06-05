@@ -34,7 +34,7 @@ const Nav = () => {
                 {isLoggedIn && (
                     <>
                         <li>
-                            <Link to="/">
+                            <Link to="/profile">
                                 <Button layout="link">
                                     <span>Profile</span>
                                 </Button>

@@ -69,6 +69,7 @@ const signupMail = async (to, name) => {
 };
 
 const forgotPasswordMail = async (token, email) => {
+    const reset_url = `${url}/reset-password?token=${encodeURIComponent(token)}&email=${email}`
     try {
         const message = {
             to: email,
@@ -90,7 +91,7 @@ const forgotPasswordMail = async (token, email) => {
 
         // const emailTransporter = await createTransporter();
         // return await emailTransporter.sendMail(message);
-        console.log(token);
+        console.log(reset_url);
     } catch (error) {
         logger.error(error);
         throw new ErrorHandler(500, error.message);

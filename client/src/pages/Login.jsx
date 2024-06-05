@@ -1,6 +1,5 @@
-// import { useGoogleLogin } from "@react-oauth/google";
 import { Button, HelperText, Input, Label } from "@windmill/react-ui";
-// import ForgotPasswordModal from "components/ForgotPasswordModal";
+import ForgotPasswordModal from "components/ForgotPasswordModal";
 import { useUser } from "context/UserContext";
 import Layout from "layout/Layout";
 import { useState } from "react";
@@ -111,7 +110,7 @@ const Login = () => {
                         </HelperText>
                     )}
                     <div className="mt-4">
-                        {/* <ForgotPasswordModal /> */}
+                        <ForgotPasswordModal />
                     </div>
                     <Button type="submit" disabled={isLoading}>
                         {isLoading ? <PulseLoader color={"#0a138b"} size={10} loading /> : "Login"}
