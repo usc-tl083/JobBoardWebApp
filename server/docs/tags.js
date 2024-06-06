@@ -12,5 +12,9 @@ module.exports = {
             name: "Job Postings",
             description: "API for Job Postings"
         },
+        {
+            name: "Applications",
+            description: "API for Job Applicaitons"
+        },
     ],
 };

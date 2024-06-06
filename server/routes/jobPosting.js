@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { verify } = require("crypto");
 const {
     getAllJobPostings,
     addJobPosting,
