@@ -5,6 +5,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css";
+import { JobProvider } from "context/JobContext";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -13,9 +14,11 @@ root.render(
     <HelmetProvider>
         <Windmill>
             <UserProvider>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
+                <JobProvider>
+                    <BrowserRouter>
+                        <App />
+                    </BrowserRouter>
+                </JobProvider>
             </UserProvider>
         </Windmill>
     </HelmetProvider>

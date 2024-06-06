@@ -51,6 +51,11 @@ module.exports = {
                                 description: "Location", // desc
                                 example: "Kathmandu"
                             },
+                            company: {
+                                type: "string", // data-type
+                                description: "Company", // desc
+                                example: "Codeing Byte"
+                            },
                             job_type: {
                                 type: "string", // data-type
                                 description: "part-time, full-time, freelance", // desc

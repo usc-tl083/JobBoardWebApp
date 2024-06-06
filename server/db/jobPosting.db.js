@@ -8,10 +8,10 @@ const getAllJobPostingsDb = async ({ limit, offset }) => {
     return job_postings;
 };
 
-const createJobPostingDb = async ({ employer_id, title, description, requirements, salary, location, job_type, application_deadline }) => {
+const createJobPostingDb = async ({ employer_id, title, description, requirements, salary, location, company, job_type, application_deadline }) => {
     const { rows: job_posting } = await pool.query(
-        "INSERT INTO job_postings(employer_id, title, description, requirements, salary, location, job_type, application_deadline) VALUES($1, $2, $3, $4, $5, $6, $7, $8) returning *",
-        [employer_id, title, description, requirements, salary, location, job_type, application_deadline]
+        "INSERT INTO job_postings(employer_id, title, description, requirements, salary, location, company, job_type, application_deadline) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) returning *",
+        [employer_id, title, description, requirements, salary, location, company, job_type, application_deadline]
     );
     return job_posting[0];
 };
@@ -62,14 +62,15 @@ const updateJobPostingDb = async ({
     requirements,
     salary,
     location,
+    company,
     job_type,
     application_deadline,
     id,
 }) => {
     const { rows: job_postings } = await pool.query(
-        `UPDATE job_postings set title = $1, description = $2, requirements = $3, salary = $4, location = $5, job_type = $6, application_deadline = $7 
-        where job_id = $8 returning title, description, requirements, salary, location, job_type, application_deadline, job_id`,
-        [title, description, requirements, salary, location, job_type, application_deadline, id]
+        `UPDATE job_postings set title = $1, description = $2, requirements = $3, salary = $4, location = $5, company = $6, job_type = $7, application_deadline = $8 
+        where job_id = $9 returning title, description, requirements, salary, location, company, job_type, application_deadline, job_id`,
+        [title, description, requirements, salary, location, company, job_type, application_deadline, id]
     );
     return job_postings[0];
 };

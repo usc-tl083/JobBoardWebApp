@@ -1,7 +1,4 @@
-const pool = require("../config");
 const jobPostingService = require("../services/jobPosting.service");
-const JobPostingService = require("../services/jobPosting.service");
-const ErrorHandler = require("../helpers/error");
 
 const getAllJobPostings = async (req, res) => {
     const { page = 1 } = req.query;
@@ -41,7 +38,7 @@ const getJobPostingsByLocation = async(req, res) => {
 };
 
 const updateJobPosting = async(req, res) => {
-    const { title, description, requirements, salary, location, job_type, application_deadline} = req.body;
+    const { title, description, requirements, salary, location, company, job_type, application_deadline} = req.body;
     const { id } = req.params;
 
     const updateJobPosting = await jobPostingService.updateJobPosting({
@@ -50,6 +47,7 @@ const updateJobPosting = async(req, res) => {
         requirements,
         salary,
         location,
+        company,
         job_type,
         application_deadline,
         id,

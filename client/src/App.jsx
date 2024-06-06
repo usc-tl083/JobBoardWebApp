@@ -7,6 +7,7 @@ import {
   Register,
   Account,
   ResetPassword,
+  JobDetails,
 } from "pages";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
@@ -30,7 +31,8 @@ function App() {
 
         <Route path="/signup" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route index element={< JobPostList />} />
+        <Route index element={<JobPostList />} />
+        <Route path="/job-postings/:id/" element={<JobDetails />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

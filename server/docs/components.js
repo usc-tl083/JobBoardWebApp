@@ -289,6 +289,11 @@ module.exports = {
                         description: "Job's location", // desc
                         example: "Kathmandu", // example of a completed value
                     },
+                    company: {
+                        type: "string", // data type
+                        description: "company", // desc
+                        example: "Byte Coding", // example of a completed value
+                    },
                     job_type: {
                         type: "string", // data type
                         description: "Job type", // desc

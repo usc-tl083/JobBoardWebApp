@@ -13,7 +13,7 @@ const { ErrorHandler } = require("../helpers/error");
 
 class JobPostingService {
     getAllJobPostings = async (page) => {
-        const limit = 10;
+        const limit = 100;
         const offset = (page - 1) * limit;
         try {
             return await getAllJobPostingsDb({ limit, offset });

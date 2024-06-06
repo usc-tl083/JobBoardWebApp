@@ -33,9 +33,30 @@ CREATE TABLE public.job_postings
     requirements text NOT NULL,
     salary real,
     location character varying(100) NOT NULL,
+    company character varying(100) NOT NULL,
     job_type character varying(50) NOT NULL CHECK (job_type IN ('full-time', 'part-time', 'freelance')),
     application_deadline date NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (job_id),
     FOREIGN KEY (employer_id) REFERENCES public.users (user_id) ON DELETE CASCADE
 );
+
+CREATE TABLE public.applications
+(
+    application_id SERIAL NOT NULL,
+    job_id integer NOT NULL,
+    seeker_id integer NOT NULL,
+    resume character varying(100) NOT NULL,
+    cover_letter character varying(500) NOT NULL,
+    status character varying(50) NOT NULL CHECK (status IN ('applied', 'reveiwed', 'sortlisted', 'rejected')) DEFAULT 'applied',
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (application_id),
+    FOREIGN KEY (job_id) REFERENCES public.job_postings (job_id) ON DELETE CASCADE,
+    FOREIGN KEY (seeker_id) REFERENCES public.users (user_id) ON DELETE CASCADE,
+    UNIQUE (job_id, seeker_id)
+);
+
+
+-- seed data for creating admin user
+INSERT INTO public.users (username, email, password, fullname, roles, address, city, state, country)
+VALUES ('admin', 'admin@email.com', 'admin123', 'Admin User', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
