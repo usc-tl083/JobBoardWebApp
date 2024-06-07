@@ -1,4 +1,5 @@
 const pool = require("../config");
+const { ErrorHandler } = require("../helpers/error");
 
 const getAllApplicationsDb = async ({ limit, offset }) => {
     const { rows: application } = await pool.query(
@@ -17,11 +18,15 @@ const getApplicationByIdDb = async (id) => {
 };
 
 const createApplicationDb = async ({ job_id, seeker_id, resume, cover_letter }) => {
-    const { rows: applications } = await pool.query(
-        `INSERT INTO applications(job_id, seeker_id, resume, cover_letter) VALUES($1, $2, $3, $4) returning *`,
-        [job_id, seeker_id, resume, cover_letter]
-    );
-    return applications[0];
+    try {
+        const { rows: applications } = await pool.query(
+            `INSERT INTO applications(job_id, seeker_id, resume, cover_letter) VALUES($1, $2, $3, $4) returning *`,
+            [job_id, seeker_id, resume, cover_letter]
+        );
+        return applications[0];
+    } catch (error) {
+        throw new ErrorHandler(403, "Unique key constraint violation.");
+    }
 };
 
 const updateApplicationDb = async ({ resume, cover_letter, status, id }) => {

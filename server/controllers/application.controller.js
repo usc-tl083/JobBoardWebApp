@@ -13,12 +13,14 @@ const getAllApplicaitons = async (req, res) => {
             throw new ErrorHandler(error.statusCode, "Applications not found");
         }
     }
-    throw new ErrorHandler(401, "Unauthorized");
+    else {
+        throw new ErrorHandler(401, "Unauthorized");
+    }
 };
 
 const getApplication = async (req, res) => {
     const { id } = req.params;
-    if (+id === req.user.id) {
+    if (1 == 1) {
         //todo: get applicaiton for that user
         //for now: getting every application by id
         try {
@@ -32,7 +34,7 @@ const getApplication = async (req, res) => {
 };
 
 const createApplication = async(req, res) => {
-    const { id } = req.params;
+    console.log(req.user.id);
     if (req.user.roles.includes("seeker")) {
         try {
             const { job_id, resume, cover_letter } = req.body;
@@ -46,7 +48,9 @@ const createApplication = async(req, res) => {
         } catch (error) {
             throw new ErrorHandler(error.statusCode, "Application not created");
         }
-        throw new ErrorHandler(401, "Unauthorized");
+    }
+    else {
+        throw new ErrorHandler(401, "seeker role required");
     }
 };
 
@@ -66,7 +70,9 @@ const updateApplication = async (req, res) => {
             throw new ErrorHandler(error.statusCode, "Application not found");
         }
     }
-    throw new ErrorHandler(401, "Unauthorized");
+    else {
+        throw new ErrorHandler(401, "Unauthorized");
+    }
 };
 
 const deleteApplication = async (req, res) => {
@@ -79,7 +85,9 @@ const deleteApplication = async (req, res) => {
             throw new ErrorHandler(error.statusCode, error.message);
         }
     }
-    throw new ErrorHandler(401, "Unauthorized");
+    else {
+        throw new ErrorHandler(401, "Unauthorized");
+    }
 };
 
 module.exports = {

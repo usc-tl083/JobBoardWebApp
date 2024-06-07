@@ -59,4 +59,4 @@ CREATE TABLE public.applications
 
 -- seed data for creating admin user
 INSERT INTO public.users (username, email, password, fullname, roles, address, city, state, country)
-VALUES ('admin', 'admin@email.com', 'admin123', 'Admin User', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
+VALUES ('admin', 'admin@email.com', '$2b$10$D1zFoELsks6m.XRrZdqzm.jsi2w8pE3o7.uTx4QzDOA6SDxXDZLuO', 'Admin User', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');

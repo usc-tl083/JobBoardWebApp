@@ -10,7 +10,7 @@ const docs = require("../docs");
 router.use("/auth", auth);
 router.use("/users", users);
 router.use("/job-postings", jobPosting);
-router.use("/application", application);
+router.use("/applications", application);
 router.use("/docs", swaggerUi.serve, swaggerUi.setup(docs));
 
 module.exports = router;

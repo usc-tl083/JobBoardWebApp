@@ -15,7 +15,7 @@ const verifyToken = require("../middleware/verifyToken");
 router
     .route("/")
     .get(verifyToken, verifyAdmin, getAllApplicaitons)
-    .post(verifyToken, verifyEmployer, createApplication)
+    .post(verifyToken, createApplication)
 
 router
     .route("/:id")

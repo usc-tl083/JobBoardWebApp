@@ -112,6 +112,7 @@ class AuthService {
           user_id,
           fullname,
           username,
+          roles,
         },
       };
     } catch (error) {

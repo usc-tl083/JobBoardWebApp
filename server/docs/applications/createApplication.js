@@ -47,6 +47,9 @@ module.exports = {
             401: {
                 description: "Unauthorized", // response desc
             },
+            403: {
+                description: "Application not created", // response desc
+            },
             // response code
             500: {
                 description: "Server error", // response desc

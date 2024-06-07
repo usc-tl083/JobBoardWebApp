@@ -42,7 +42,7 @@ module.exports = {
                     // content-type
                     "application/json": {
                         schema: {
-                            $ref: "#/components/schemas/JobPostUpdate", // user data model
+                            $ref: "#/components/schemas/Application", // user data model
                         },
                     },
                 },
