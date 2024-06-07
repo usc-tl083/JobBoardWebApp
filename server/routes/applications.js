@@ -8,7 +8,7 @@ const {
 
 } = require("../controllers/application.controller");
 
-const verifyAdmin = require(",,/middleware/verifyAdmin");
+const verifyAdmin = require("../middleware/verifyAdmin");
 const verifyEmployer = require("../middleware/verifyEmployer");
 const verifyToken = require("../middleware/verifyToken");
 
@@ -22,3 +22,5 @@ router
     .get(verifyToken, getApplication)
     .delete(verifyToken, verifyAdmin, deleteApplication)
     .put(verifyToken, updateApplication)
+
+module.exports = router;

@@ -255,10 +255,6 @@ module.exports = {
                         format: "date",
                         description: "date", // desc
                     },
-                    test_property: {
-                        type: "string",
-                        description: "description",
-                    }
                 },
             },
             JobPostUpdate: {
@@ -306,6 +302,61 @@ module.exports = {
                         example: "2024-7-14", // example of a completed value
                     },
                 },
+            },
+            Application: {
+                type: "object", // data type
+                properties: {
+                    application_id: {
+                        type: "string", // data-type
+                        description: "applicaiton id", // desc
+                        example: "1", // example of a title
+                    },
+                    job_id: {
+                        type: "string", // data-type
+                        description: "job id", // desc
+                        example: "1", // example of a title
+                    },
+                    seeker_id: {
+                        type: "string", // data-type
+                        description: "seeker id", // desc
+                        example: "1", // example of a title
+                    },
+                    resume: {
+                        type: "string", // data-type
+                        description: "resume link", // desc
+                        example: "https://www.resume.com/uploads/1", // example of a title
+                    },
+                    cover_letter: {
+                        type: "string", // data-type
+                        description: "cover letter", // desc
+                        example: "This is the cover letter.", // example of a title
+                    },
+                    status: {
+                        type: "string", // data-type
+                        description: "status", // desc
+                        example: "applied", // example of a title
+                    },
+                },
+            },
+            ApplicationUpdate: {
+                type: "object",
+                properties: {
+                    resume: {
+                        type: "string", // data-type
+                        description: "resume link", // desc
+                        example: "https://www.resume.com/uploads/1", // example of a title
+                    },
+                    cover_letter: {
+                        type: "string", // data-type
+                        description: "cover letter", // desc
+                        example: "This is the cover letter.", // example of a title
+                    },
+                    status: {
+                        type: "string", // data-type
+                        description: "status", // desc
+                        example: "applied", // example of a title
+                    },
+                }
             },
             // error model
             Error: {
