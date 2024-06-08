@@ -1,31 +1,49 @@
-import { Button, HelperText, Input, Label } from "@windmill/react-ui";
-import { useUser } from "context/UserContext";
+import { Button, HelperText, Input, Label, Textarea, } from "@windmill/react-ui";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useParams, Navigate, useLocation } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
+import jobsService from "services/jobs.service";
 
-const JobApplicationForm = ({ setShowSettings, userData }) => {
-    const { register, handleSubmit } = useForm({
+const JobApplicationForm = () => {
+    const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [redirectToReferrer, setRedirectToReferrer] = useState(false);
+    const { state } = useLocation();
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
+            cover_letter: "",
+            resume: "",
         },
     });
-    const [validationError, setValidationError] = useState();
-    const [isSaving, setIsSaving] = useState(false);
-    const { updateUserData } = useUser();
+
+    const {id} = useParams()
 
     const onSubmit = async (data) => {
-        setValidationError();
-        setIsSaving(true);
+        const { resume, cover_letter} = data;
+
         try {
-            await updateUserData(data);
-            setShowSettings(false);
-            setIsSaving(false);
+            setError("");
+            setIsLoading(true);
+            await jobsService.applyJob(id, resume, cover_letter);
+            toast.success("Applied successfully");
+
+            setTimeout(() => {
+                setRedirectToReferrer(true);
+                setIsLoading(false);
+            }, 1500);
         } catch (error) {
-            setIsSaving(false);
-            setValidationError(error.response.data.message);
+            setIsLoading(false);
+            toast.error("Can't apply for this job");
+            setError(error.response?.data.message);
         }
     };
+
+    if (redirectToReferrer) {
+        return <Navigate to={state?.from || "/"} />
+    }
 
     return (
         <section className="grid place-items-center pt-4 mt-10">
@@ -39,29 +57,52 @@ const JobApplicationForm = ({ setShowSettings, userData }) => {
                     onSubmit={handleSubmit(onSubmit)}
                     className="border-t border-gray-200 grid grid-cols-1"
                 >
-                    <Label className="bg-gray-50 px-4 py-5">
-                        <span className="text-sm font-medium text-gray-500 w-1/4">Cover Letter</span>
-                        <Input
-                            name="fullname"
-                            {...register("fullname")}
+                    <Label className="bg-white px-4 py-1 ">
+                        <span className="text-sm font-medium text-gray-500">Cover Letter</span>
+                        <Textarea
+                            name="cover_letter"
+                            rows="8"
+                            placeholder="Write a cover letter"
+                            {...register("cover_letter", {
+                                required: true
+                            })}
                             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                        />
+                        >
+                        </Textarea>
+                        {errors?.cover_letter && errors.cover_letter.type === "required" && (
+                            <HelperText className="mt-1 italic" valid={false}>
+                                Cover letter required
+                            </HelperText>
+                        )}
                     </Label>
-                    <Label className="bg-white px-4 py-5 ">
-                        <span className="text-sm font-medium text-gray-500">Resume</span>
+                    <Label className="px-4 py-1">
+                        <span className="text-sm font-medium text-gray-500 w-1/4">Resume</span>
                         <Input
-                            name="username"
-                            {...register("username")}
+                            name="resume"
+                            placeholder="Google drive link of resume"
+                            {...register("resume", {
+                                required: true,
+                                pattern: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})(:\d{1,5})?(\/[^\s]*)?$/,
+                            })}
                             className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                         />
-                        {validationError && <HelperText valid={false}>{validationError.username}</HelperText>}
+                        {errors?.resume && errors.resume.type === "required" && (
+                            <HelperText className="mt-1 italic" valid={false}>
+                                Resume link required
+                            </HelperText>
+                        )}
+                        {errors?.resume && errors.resume.type === "pattern" && (
+                            <HelperText className="mt-1 italic" valid={false}>
+                                Invalid resume link
+                            </HelperText>
+                        )}
                     </Label>
                     <div className="px-4 py-5 space-x-4">
-                        <Button disabled={isSaving} type="submit">
-                            {isSaving ? <PulseLoader color={"#0a138b"} size={10} loading={isSaving} /> : "Apply"}
+                        <Button disabled={isLoading} type="submit">
+                            {isLoading ? <PulseLoader color={"#0a138b"} size={10} loading /> : "Apply"}
                         </Button>
                         <Link to={"/"}>
-                            <Button disabled={isSaving} onClick={() => setShowSettings(false)} layout="outline">
+                            <Button layout="outline">
                                 Cancel
                             </Button>
                         </Link>
