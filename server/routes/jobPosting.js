@@ -11,6 +11,8 @@ const {
     deleteJobPosting,
 } = require("../controllers/jobPosting.controller");
 
+const { createApplication } = require("../controllers/application.controller");
+
 const verifyAdmin = require("../middleware/verifyAdmin");
 const verifyToken = require("../middleware/verifyToken");
 
@@ -20,13 +22,13 @@ router
     .post(verifyToken, verifyAdmin, addJobPosting)
 
 router
-    .route("/:slug")
+    .route("/apply")
+    .post(verifyToken, createApplication)
 
 router
     .route("/:id")
     .get(getJobPosting)
     .delete(verifyToken, verifyAdmin, deleteJobPosting)
     .put(verifyToken, verifyAdmin, updateJobPosting)
-
 
 module.exports = router;

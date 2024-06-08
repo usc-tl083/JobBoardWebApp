@@ -32,8 +32,8 @@ const createApplicationDb = async ({ job_id, seeker_id, resume, cover_letter }) 
 const updateApplicationDb = async ({ resume, cover_letter, status, id }) => {
     // TODO: seeker cant change status and can only update his own applicaiton
     const { rows: applications } = await pool.query(
-        `UPDATE applications resume = $1, cover_letter = $2, status = $3 
-        where application_id = $9 returning resume, cover_letter, status`,
+        `UPDATE applications set resume = $1, cover_letter = $2, status = $3 
+        where application_id = $4 returning resume, cover_letter, status`,
         [resume, cover_letter, status, id]
     );
     return applications[0];

@@ -24,7 +24,7 @@ module.exports = {
         // expected responses
         responses: {
             // response code
-            201: {
+            200: {
                 description: "Job application deleted successfully", // response desc
             },
             401: {

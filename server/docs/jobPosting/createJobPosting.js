@@ -1,5 +1,3 @@
-const { format } = require("sequelize/lib/utils");
-
 module.exports = {
     // operation's method
     post: {

@@ -34,7 +34,6 @@ const getApplication = async (req, res) => {
 };
 
 const createApplication = async(req, res) => {
-    console.log(req.user.id);
     if (req.user.roles.includes("seeker")) {
         try {
             const { job_id, resume, cover_letter } = req.body;
@@ -57,7 +56,7 @@ const createApplication = async(req, res) => {
 const updateApplication = async (req, res) => {
     const { resume, cover_letter } = req.body;
     const { id } = req.params;
-    if (+id === req.user.id) {
+    if (1==1) {
         try {
             const updateApplication = await applicationService.updateApplication({
                 resume,

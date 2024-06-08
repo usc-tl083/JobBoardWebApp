@@ -19,7 +19,7 @@ module.exports = {
                     $ref: "#/components/schemas/id", // id model
                 },
                 required: true, // mandatory
-                description: "Id of job post to be updated", // short desc.
+                description: "application id", // short desc.
             },
         ],
         requestBody: {

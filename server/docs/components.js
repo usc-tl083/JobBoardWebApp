@@ -351,11 +351,6 @@ module.exports = {
                         description: "cover letter", // desc
                         example: "This is the cover letter.", // example of a title
                     },
-                    status: {
-                        type: "string", // data-type
-                        description: "status", // desc
-                        example: "applied", // example of a title
-                    },
                 }
             },
             // error model
