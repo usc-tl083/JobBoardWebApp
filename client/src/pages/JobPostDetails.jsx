@@ -3,7 +3,7 @@ import { formatCurrency } from "helpers/formatCurrency";
 import { formatDate } from "helpers/formatDate";
 import Layout from "layout/Layout";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import jobService from "services/jobs.service";
 
 const JobDetails = () => {
@@ -60,11 +60,13 @@ const JobDetails = () => {
                 <span className="title-font font-semibold">Requirements:</span> {job?.requirements}
               </p>
               <div className="flex mt-4 justify-between">
-                <Button
-                  className="border-0 focus:outline-none rounded"
-                >
-                  Apply Now
-                </Button>
+                <Link to={`/job-postings/${job?.job_id}/apply`}>
+                  <Button
+                    className="border-0 focus:outline-none rounded"
+                  >
+                    Apply Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
