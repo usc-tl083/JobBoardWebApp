@@ -4,6 +4,7 @@ const {
     createApplicationDb,
     updateApplicationDb,
     deleteApplicationDb,
+    getUserApplicationDetailsDb,
 } = require("../db/application.db");
 const { ErrorHandler } = require("../helpers/error");
 
@@ -31,7 +32,11 @@ class ApplicationService {
     };
 
     getUserApplicationDetails = async (id) => {
-        
+        try {
+            return await getUserApplicationDetailsDb(id);
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, error.message);
+        }
     }
 
     createApplication = async (data) => {
