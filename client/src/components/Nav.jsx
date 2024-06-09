@@ -1,7 +1,7 @@
-import { Badge, Button, Dropdown, DropdownItem, Transition } from "@windmill/react-ui";
+import { Button, Dropdown, DropdownItem, Transition } from "@windmill/react-ui";
 import { useUser } from "context/UserContext";
 import { useState } from "react";
-import { LogOut, User } from "react-feather";
+import { LogOut, FileText, User } from "react-feather";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
@@ -34,16 +34,23 @@ const Nav = () => {
                 {isLoggedIn && (
                     <>
                         <li>
+                            <Link to="/applications">
+                                <Button layout="link">
+                                    <span className="lg:block hidden">Applications</span>
+                                    <FileText className="lg:hidden" />
+                                </Button>
+                            </Link>
                             <Link to="/profile">
                                 <Button layout="link">
-                                    <span>Profile</span>
+                                    <span className="lg:block hidden">Profile</span>
+                                    <User className="lg:hidden" />
                                 </Button>
                             </Link>
                         </li>
                         <li className="relative">
                             <Button layout="link" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                                 <span className="lg:block hidden">Account</span>
-                                <User className="lg:hidden" />
+                                <LogOut className="lg:hidden" />
                             </Button>
                             <Transition
                                 show={isDropdownOpen}

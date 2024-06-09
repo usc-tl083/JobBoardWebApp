@@ -30,6 +30,10 @@ class ApplicationService {
         }
     };
 
+    getUserApplicationDetails = async (id) => {
+        
+    }
+
     createApplication = async (data) => {
         try {
             return await createApplicationDb(data);
