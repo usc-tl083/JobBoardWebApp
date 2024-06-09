@@ -19,7 +19,7 @@ const getApplicationByIdDb = async (id) => {
 
 const getUserApplicationDetailsDb = async (id) => {
     const { rows: applications } = await pool.query(
-        'SELECT j.title AS job_title, j.company AS job_company, j.location as job_location, u.fullname AS employer, j.salary as job_salary, j.job_type as job_type, a.status, a.created_at as applied_date FROM  public.applications a JOIN  public.job_postings j ON a.job_id = j.job_id JOIN  public.users u ON j.employer_id = u.user_id WHERE  a.seeker_id = $1;', 
+        'SELECT j.title AS job_title, j.company AS job_company, j.location AS job_location, u.fullname AS employer, j.salary AS job_salary, j.job_type AS job_type, a.status, a.created_at AS applied_date FROM  public.applications a JOIN  public.job_postings j ON a.job_id = j.job_id JOIN  public.users u ON j.employer_id = u.user_id WHERE  a.seeker_id = $1;',
         [id]
     );
     return applications;

@@ -4,6 +4,7 @@ const getJobPosting = require("./getJobPosting");
 const getJobPostings = require("./getJobPostings");
 const updateJobPosting = require("./updateJobPosting");
 const applyJob = require("./applyJob");
+const getUserApplications = require('./getUserApplications');
 
 module.exports = {
     "/job-postings": {
@@ -12,6 +13,9 @@ module.exports = {
     },
     "/job-postings/apply": {
         ...applyJob,
+    },
+    "/job-postings/get-user-applications": {
+        ...getUserApplications,
     },
     "/job-postings/{id}": {
         ...getJobPosting,

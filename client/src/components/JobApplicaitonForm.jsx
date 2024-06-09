@@ -42,7 +42,7 @@ const JobApplicationForm = () => {
     };
 
     if (redirectToReferrer) {
-        return <Navigate to={state?.from || "/"} />
+        return <Navigate to={state?.from || "/applications"} />
     }
 
     return (

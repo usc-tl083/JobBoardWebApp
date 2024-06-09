@@ -9,7 +9,7 @@ const {
 } = require("../controllers/application.controller");
 
 const verifyAdmin = require("../middleware/verifyAdmin");
-const verifyEmployer = require("../middleware/verifyEmployer");
+// const verifyEmployer = require("../middleware/verifyEmployer");
 const verifyToken = require("../middleware/verifyToken");
 
 router

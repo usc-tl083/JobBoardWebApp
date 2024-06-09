@@ -11,7 +11,7 @@ const {
     deleteJobPosting,
 } = require("../controllers/jobPosting.controller");
 
-const { createApplication } = require("../controllers/application.controller");
+const { createApplication, getUserApplicationDetails } = require("../controllers/application.controller");
 
 const verifyAdmin = require("../middleware/verifyAdmin");
 const verifyToken = require("../middleware/verifyToken");
@@ -24,6 +24,10 @@ router
 router
     .route("/apply")
     .post(verifyToken, createApplication)
+
+router
+    .route("/get-user-applications")
+    .get(verifyToken, getUserApplicationDetails)
 
 router
     .route("/:id")

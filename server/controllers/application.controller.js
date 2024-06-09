@@ -1,7 +1,5 @@
 const applicationService = require("../services/application.service");
 const { ErrorHandler } = require("../helpers/error");
-const pool = require("../config");
-const { DESCRIBE } = require("sequelize/lib/query-types");
 
 const getAllApplicaitons = async (req, res) => {
     if (req.user.roles.includes("admin")) {
@@ -34,10 +32,9 @@ const getApplication = async (req, res) => {
 };
 
 const getUserApplicationDetails = async (req, res) => {
-    const { id } = req.params;
-    if(req.user.roles.include("seeker")) {
+    if (req.user.roles.includes("seeker")) {
         try {
-            const applications = await applicationService.getUserApplicationDetails(id);
+            const applications = await applicationService.getUserApplicationDetails(req.user.id);
             return res.status(200).json(applications);
         } catch (error) {
             throw new ErrorHandler(error.statusCode, "Applications not found");
@@ -46,7 +43,7 @@ const getUserApplicationDetails = async (req, res) => {
     throw new ErrorHandler(401, "Unauthorized");
 }
 
-const createApplication = async(req, res) => {
+const createApplication = async (req, res) => {
     if (req.user.roles.includes("seeker")) {
         try {
             const { job_id, resume, cover_letter } = req.body;
@@ -69,7 +66,7 @@ const createApplication = async(req, res) => {
 const updateApplication = async (req, res) => {
     const { resume, cover_letter } = req.body;
     const { id } = req.params;
-    if (1==1) {
+    if (1 == 1) {
         try {
             const updateApplication = await applicationService.updateApplication({
                 resume,
