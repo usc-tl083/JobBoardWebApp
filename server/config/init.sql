@@ -57,6 +57,57 @@ CREATE TABLE public.applications
 );
 
 
--- seed data for creating admin user
+-- seed data for creating admin users
 INSERT INTO public.users (username, email, password, fullname, roles, address, city, state, country)
-VALUES ('admin', 'admin@email.com', '$2b$10$D1zFoELsks6m.XRrZdqzm.jsi2w8pE3o7.uTx4QzDOA6SDxXDZLuO', 'Admin User', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
+VALUES ('admin1', 'admin1@email.com', '$2b$10$D1zFoELsks6m.XRrZdqzm.jsi2w8pE3o7.uTx4QzDOA6SDxXDZLuO', 'Admin User1', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
+INSERT INTO public.users (username, email, password, fullname, roles, address, city, state, country)
+VALUES ('admin2', 'admin2@email.com', '$2b$10$D1zFoELsks6m.XRrZdqzm.jsi2w8pE3o7.uTx4QzDOA6SDxXDZLuO', 'Admin User2', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
+INSERT INTO public.users (username, email, password, fullname, roles, address, city, state, country)
+VALUES ('admin3', 'admin3@email.com', '$2b$10$D1zFoELsks6m.XRrZdqzm.jsi2w8pE3o7.uTx4QzDOA6SDxXDZLuO', 'Admin User3', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
+
+-- seed data for creating seeker users
+INSERT INTO public.users (username, email, password, fullname, roles)
+VALUES ('seeker1', 'seeker1@email.com', '$2b$10$i10z/eFYeD.wCb9zCgTtY.HHg0WFR1Tf7QZpAYgyzzHGc94y6WWfy', 'Seeker User1', '{seeker}');
+INSERT INTO public.users (username, email, password, fullname, roles)
+VALUES ('seeker2', 'seeker2@email.com', '$2b$10$i10z/eFYeD.wCb9zCgTtY.HHg0WFR1Tf7QZpAYgyzzHGc94y6WWfy', 'Seeker User2', '{seeker}');
+INSERT INTO public.users (username, email, password, fullname, roles)
+VALUES ('seeker3', 'seeker3@email.com', '$2b$10$i10z/eFYeD.wCb9zCgTtY.HHg0WFR1Tf7QZpAYgyzzHGc94y6WWfy', 'Seeker User3', '{seeker}');
+
+-- seed data for creating employer users
+INSERT INTO public.users (username, email, password, fullname, roles)
+VALUES ('employer1', 'employer1@email.com', '$2b$10$CKPLoZu369FqB9nVvoeUauBekrAHfYX2ExbUAA.LnT8M5lqQ.RprO', 'Employer User1', '{employer}');
+INSERT INTO public.users (username, email, password, fullname, roles)
+VALUES ('employer2', 'employer2@email.com', '$2b$10$CKPLoZu369FqB9nVvoeUauBekrAHfYX2ExbUAA.LnT8M5lqQ.RprO', 'Employer User2', '{employer}');
+INSERT INTO public.users (username, email, password, fullname, roles)
+VALUES ('employer3', 'employer3@email.com', '$2b$10$CKPLoZu369FqB9nVvoeUauBekrAHfYX2ExbUAA.LnT8M5lqQ.RprO', 'Employer User3', '{employer}');
+
+-- seed data for creting job posts
+INSERT INTO public.job_postings (job_id, employer_id, title, description, requirements, salary, location, company, job_type, application_deadline, created_at) VALUES
+(1, 7, 'Frontend Developer', 'ReactJS and NuxtJS', 'Job requirements are the skills, experiences and qualities an employer deems necessary for a candidate to be considered for a role. Job requirements — also called prerequisites or qualifications — are an important part of any job description and can’t be overlooked by either the employer or prospective employee. For recruiters, job requirements are a helpful pre-selection tool. When written correctly, they can be used to quickly screen applicants and determine preliminary fit for a role. This minimizes the time dedicated to sourcing candidates and it improves the quality and relevancy of your applicant pool.', 20000, 'Kathmandu', 'Coding Byte', 'full-time', '2024-05-26', '2024-05-26 20:51:15.040984');
+
+INSERT INTO public.job_postings (job_id, employer_id, title, description, requirements, salary, location, company, job_type, application_deadline, created_at) VALUES
+(2, 7, 'Backend Developer', 'ReactJS and NuxtJS', 'Job requirements are the skills, experiences and qualities an employer deems necessary for a candidate to be considered for a role. Job requirements — also called prerequisites or qualifications — are an important part of any job description and can’t be overlooked by either the employer or prospective employee. For recruiters, job requirements are a helpful pre-selection tool. When written correctly, they can be used to quickly screen applicants and determine preliminary fit for a role. This minimizes the time dedicated to sourcing candidates and it improves the quality and relevancy of your applicant pool.', 30000, 'Kathmandu', 'Coding Byte', 'part-time', '2024-05-26', '2024-05-26 20:51:44.305973');
+
+INSERT INTO public.job_postings (job_id, employer_id, title, description, requirements, salary, location, company, job_type, application_deadline, created_at) VALUES
+(3, 7, 'UI/UX Designer', 'Figma and Illustrator', 'Job requirements are the skills, experiences and qualities an employer deems necessary for a candidate to be considered for a role. Job requirements — also called prerequisites or qualifications — are an important part of any job description and can’t be overlooked by either the employer or prospective employee. For recruiters, job requirements are a helpful pre-selection tool. When written correctly, they can be used to quickly screen applicants and determine preliminary fit for a role. This minimizes the time dedicated to sourcing candidates and it improves the quality and relevancy of your applicant pool.', 10000, 'Kathmandu', 'Coding Byte', 'freelance', '2024-07-01', '2024-05-26 20:52:23.261576');
+
+INSERT INTO public.job_postings (job_id, employer_id, title, description, requirements, salary, location, company, job_type, application_deadline, created_at) VALUES
+(4, 7, 'HR Manager', 'Manage the human resources.', 'Job requirements are the skills, experiences and qualities an employer deems necessary for a candidate to be considered for a role. Job requirements — also called prerequisites or qualifications — are an important part of any job description and can’t be overlooked by either the employer or prospective employee. For recruiters, job requirements are a helpful pre-selection tool. When written correctly, they can be used to quickly screen applicants and determine preliminary fit for a role. This minimizes the time dedicated to sourcing candidates and it improves the quality and relevancy of your applicant pool.', 10000, 'Kathmandu', 'Coding Byte', 'freelance', '2024-07-01', '2024-05-26 20:52:46.456384');
+
+INSERT INTO public.job_postings (job_id, employer_id, title, description, requirements, salary, location, company, job_type, application_deadline, created_at) VALUES
+(5, 8, 'Backend Developer', 'NodeJS and FastAPI', 'Job requirements are the skills, experiences and qualities an employer deems necessary for a candidate to be considered for a role. Job requirements — also called prerequisites or qualifications — are an important part of any job description and can’t be overlooked by either the employer or prospective employee. For recruiters, job requirements are a helpful pre-selection tool. When written correctly, they can be used to quickly screen applicants and determine preliminary fit for a role. This minimizes the time dedicated to sourcing candidates and it improves the quality and relevancy of your applicant pool.', 100000, 'Kathmandu', 'Bit Coding', 'full-time', '2024-07-01', '2024-05-26 20:53:53.877055');
+
+INSERT INTO public.job_postings (job_id, employer_id, title, description, requirements, salary, location, company, job_type, application_deadline, created_at) VALUES
+(6, 8, 'Frontend Developer', 'React and Vue', 'Job requirements are the skills, experiences and qualities an employer deems necessary for a candidate to be considered for a role. Job requirements — also called prerequisites or qualifications — are an important part of any job description and can’t be overlooked by either the employer or prospective employee. For recruiters, job requirements are a helpful pre-selection tool. When written correctly, they can be used to quickly screen applicants and determine preliminary fit for a role. This minimizes the time dedicated to sourcing candidates and it improves the quality and relevancy of your applicant pool.', 40000, 'Kathmandu', 'Bit Coding', 'part-time', '2024-07-01', '2024-05-26 20:54:14.364255');
+
+INSERT INTO public.job_postings (job_id, employer_id, title, description, requirements, salary, location, company, job_type, application_deadline, created_at) VALUES
+(7, 8, 'Mobile App Developer', 'Flutter and Dart', 'Job requirements are the skills, experiences and qualities an employer deems necessary for a candidate to be considered for a role. Job requirements — also called prerequisites or qualifications — are an important part of any job description and can’t be overlooked by either the employer or prospective employee. For recruiters, job requirements are a helpful pre-selection tool. When written correctly, they can be used to quickly screen applicants and determine preliminary fit for a role. This minimizes the time dedicated to sourcing candidates and it improves the quality and relevancy of your applicant pool.', 40000, 'Kathmandu', 'Bit Coding', 'full-time', '2024-07-01', '2024-05-26 20:54:46.118471');
+
+INSERT INTO public.job_postings (job_id, employer_id, title, description, requirements, salary, location, company, job_type, application_deadline, created_at) VALUES
+(8, 8, 'Graphics Designer', 'Illustrator and Figma', 'Job requirements are the skills, experiences and qualities an employer deems necessary for a candidate to be considered for a role. Job requirements — also called prerequisites or qualifications — are an important part of any job description and can’t be overlooked by either the employer or prospective employee. For recruiters, job requirements are a helpful pre-selection tool. When written correctly, they can be used to quickly screen applicants and determine preliminary fit for a role. This minimizes the time dedicated to sourcing candidates and it improves the quality and relevancy of your applicant pool.', 20000, 'Kathmandu', 'Bit Coding', 'freelance', '2024-07-01', '2024-05-26 20:55:33.850914');
+
+INSERT INTO public.job_postings (job_id, employer_id, title, description, requirements, salary, location, company, job_type, application_deadline, created_at) VALUES
+(9, 9, 'Graphics Designer', 'Illustrator and Pixma', 'Job requirements are the skills, experiences and qualities an employer deems necessary for a candidate to be considered for a role. Job requirements — also called prerequisites or qualifications — are an important part of any job description and can’t be overlooked by either the employer or prospective employee. For recruiters, job requirements are a helpful pre-selection tool. When written correctly, they can be used to quickly screen applicants and determine preliminary fit for a role. This minimizes the time dedicated to sourcing candidates and it improves the quality and relevancy of your applicant pool.', 20000, 'Bhaktapur', 'Baucha Codes', 'full-time', '2024-07-01', '2024-05-26 20:56:45.053365');
+
+INSERT INTO public.job_postings (job_id, employer_id, title, description, requirements, salary, location, company, job_type, application_deadline, created_at) VALUES
+(10, 9, 'Backend Developer', 'Django REST framework', 'Job requirements are the skills, experiences and qualities an employer deems necessary for a candidate to be considered for a role. Job requirements — also called prerequisites or qualifications — are an important part of any job description and can’t be overlooked by either the employer or prospective employee. For recruiters, job requirements are a helpful pre-selection tool. When written correctly, they can be used to quickly screen applicants and determine preliminary fit for a role. This minimizes the time dedicated to sourcing candidates and it improves the quality and relevancy of your applicant pool.', 60000, 'Bhaktapur', 'Baucha Codes', 'full-time', '2024-07-05', '2024-05-26 20:57:16.592627');

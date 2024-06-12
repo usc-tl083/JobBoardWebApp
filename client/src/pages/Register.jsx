@@ -1,4 +1,4 @@
-import { Button, HelperText, Input, Label } from "@windmill/react-ui";
+import { Button, HelperText, Input, Label, Select } from "@windmill/react-ui";
 import API from "api/axios.config";
 import { useUser } from "context/UserContext";
 import Layout from "layout/Layout";
@@ -12,7 +12,7 @@ const Register = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const { state } = useLocation();
-    const { isLoggedIn, setUserState } = useUser();
+    const { isLoggedIn, userData, setUserState } = useUser();
     const {
         register,
         formState: { errors },
@@ -23,7 +23,7 @@ const Register = () => {
     password.current = watch("password", "");
 
     const onSubmit = (data) => {
-        const { password, password2, username, name, email } = data;
+        const { password, password2, username, name, email, roles } = data;
         setError("");
         if (password === password2) {
             setIsLoading(!isLoading);
@@ -31,6 +31,7 @@ const Register = () => {
                 username,
                 email,
                 password,
+                roles: [roles.toLowerCase()],
                 fullname: name,
             })
                 .then(({ data }) => {
@@ -50,8 +51,11 @@ const Register = () => {
         }
     };
 
-    if (isLoggedIn) {
+    if (isLoggedIn && userData?.roles?.includes("seeker")) {
         return <Navigate to={state?.from || "/"} />;
+    }
+    if (isLoggedIn && userData?.roles?.includes("employer")) {
+        return <Navigate to={state?.from || "/profile"} />;
     }
     return (
         <Layout title="Create account">
@@ -126,6 +130,24 @@ const Register = () => {
                     {errors.email && (
                         <HelperText className="pt-2" valid={false}>
                             {errors.email.message}
+                        </HelperText>
+                    )}
+                    <div className="mt-4">
+                        <Label className="block text-grey-darker text-sm font-bold mb-2">
+                            <span>Role</span>
+                        </Label>
+                        <Select
+                            name="roles"
+                            className="shadow rounded w-full py-2 px-3 text-grey-darker"
+                            {...register("roles")}
+                        >
+                            <option selected="selected">Seeker</option>
+                            <option>Employer</option>
+                        </Select>
+                    </div>
+                    {errors.roles && (
+                        <HelperText className="pt-2" valid={false}>
+                            {errors.roles.message}
                         </HelperText>
                     )}
                     <div className="mt-4">

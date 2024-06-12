@@ -43,6 +43,18 @@ const getUserApplicationDetails = async (req, res) => {
     throw new ErrorHandler(401, "Unauthorized");
 }
 
+const getEmployerApplications = async (req, res) => {
+    if(req.user.roles.includes("employer")) {
+        try {
+            const applications = await applicationService.getEmployerApplications(req.user.id);
+            return res.status(200).json(applications);
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, "Application not found");
+        }
+    }
+    throw new ErrorHandler(401, "Unauthorized");
+}
+
 const createApplication = async (req, res) => {
     if (req.user.roles.includes("seeker")) {
         try {
@@ -103,6 +115,7 @@ module.exports = {
     getAllApplicaitons,
     getApplication,
     getUserApplicationDetails,
+    getEmployerApplications,
     createApplication,
     updateApplication,
     deleteApplication

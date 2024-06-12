@@ -19,11 +19,6 @@ module.exports = {
                     schema: {
                         type: "object", // data type
                         properties: {
-                            employer_id: {
-                                type: "integer", // data-type
-                                description: "Employer's id", // desc
-                                example: "1",
-                            },
                             title: {
                                 type: "string", // data-type
                                 description: "Job Title", // desc

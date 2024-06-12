@@ -10,7 +10,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import authService from "services/auth.service";
 
 const Login = () => {
-    const { isLoggedIn, setUserState } = useUser();
+    const { isLoggedIn, userData, setUserState } = useUser();
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [redirectToReferrer, setRedirectToReferrer] = useState(false);
@@ -47,10 +47,13 @@ const Login = () => {
         }
     };
 
-    if (redirectToReferrer) {
+    if (isLoggedIn && userData?.roles?.includes("seeker") ) {
         return <Navigate to={state?.from || "/"} />;
     }
-    if (isLoggedIn) {
+    if (isLoggedIn && userData?.roles?.includes("employer") ) {
+        return <Navigate to={state?.from || "/profile"} />;
+    }
+    if (redirectToReferrer) {
         return <Navigate to={state?.from || "/"} />;
     }
 

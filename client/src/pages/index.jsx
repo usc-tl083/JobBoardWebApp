@@ -7,3 +7,5 @@ export { default as ResetPassword } from "./ResetPassword";
 export { default as JobDetails } from "./JobPostDetails";
 export { default as JobApplication } from "./JobApplication";
 export { default as UserApplicationList } from "./UserApplicationList";
+export { default as CreateJob } from "./CreateJob";
+export { default as EmployerApplication } from "./employerApplicationList";

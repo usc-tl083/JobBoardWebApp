@@ -3,13 +3,15 @@ const updateApplication = require("./updateApplication");
 const getApplication = require("./getApplication");
 const getApplications = require("./getApplications");
 const deleteApplication = require("./deleteApplicaiton");
-const getUser = require("../users/get-user");
-const updateUser = require("../users/update-user");
+const getEmployerApplications = require("./getEmployerApplications");
 
 module.exports = {
     "/applications": {
         ...getApplications,
         ...createApplication,
+    },
+    "/applications/employer-applications": {
+        ...getEmployerApplications,
     },
     "/applications/{id}": {
         ...getApplication,

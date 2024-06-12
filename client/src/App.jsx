@@ -10,9 +10,10 @@ import {
   JobDetails,
   JobApplication,
   UserApplicationList,
+  CreateJob,
+  EmployerApplication,
 } from "pages";
 import { Suspense } from "react";
-import { User } from "react-feather";
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "routes/protected.route";
@@ -32,6 +33,8 @@ function App() {
           <Route path="/profile" element={<Account />} />
           <Route path="/job-postings/:id/apply" element={<JobApplication />} />
           <Route path="/applications" element={<UserApplicationList />} />
+          <Route path="/employer-applications" element={<EmployerApplication />} />
+          <Route path="/create-job" element={<CreateJob />} />
         </Route>
 
         <Route path="/signup" element={<Register />} />

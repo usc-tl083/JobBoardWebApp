@@ -204,6 +204,16 @@ module.exports = {
                     fullname: {
                         type: "string",
                     },
+                    roles: {
+                        type: "array", // data-type
+                        items: {
+                            type: "string",
+                            enum: ["admin", "employer", "seeker"],
+                            default: "seeker",
+                        },
+                        description: "User's roles", // desc
+                        example: ["seeker"], // example of a title
+                    },
                     username: {
                         type: "string",
                     },

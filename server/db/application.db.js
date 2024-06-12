@@ -19,9 +19,18 @@ const getApplicationByIdDb = async (id) => {
 
 const getUserApplicationDetailsDb = async (id) => {
     const { rows: applications } = await pool.query(
-        'SELECT j.title AS job_title, j.company AS job_company, j.location AS job_location, u.fullname AS employer, j.salary AS job_salary, j.job_type AS job_type, a.status, a.created_at AS applied_date FROM  public.applications a JOIN  public.job_postings j ON a.job_id = j.job_id JOIN  public.users u ON j.employer_id = u.user_id WHERE  a.seeker_id = $1;',
+        'SELECT j.title AS job_title, j.company AS job_company, j.location AS job_location, u.fullname AS employer, j.salary AS job_salary, j.job_type AS job_type, a.status, a.created_at AS applied_date, j.job_id FROM  public.applications a JOIN  public.job_postings j ON a.job_id = j.job_id JOIN  public.users u ON j.employer_id = u.user_id WHERE  a.seeker_id = $1;',
         [id]
     );
+    return applications;
+}
+
+const getEmployerApplicationsDb = async (id) => {
+    const { rows: applications } = await pool.query(
+        `SELECT a.application_id, a.job_id, jp.title AS job_title, a.seeker_id, u.username AS seeker_username, a.resume, a.cover_letter, a.status, a.created_at AS application_created_at FROM applications a JOIN job_postings jp ON a.job_id = jp.job_id JOIN users u ON a.seeker_id = u.user_id WHERE jp.employer_id = $1;
+        `,
+        [id]
+    )
     return applications;
 }
 
@@ -59,6 +68,7 @@ module.exports = {
     getAllApplicationsDb,
     getApplicationByIdDb,
     getUserApplicationDetailsDb,
+    getEmployerApplicationsDb,
     createApplicationDb,
     updateApplicationDb,
     deleteApplicationDb,

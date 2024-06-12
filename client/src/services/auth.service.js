@@ -37,10 +37,11 @@ class AuthService {
         });
     }
 
-    register(username, email, password) {
+    register(username, email, password, roles) {
         return API.post("auth/signup", {
             username,
             email,
+            roles,
             password,
         });
     }

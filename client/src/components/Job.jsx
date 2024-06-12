@@ -15,7 +15,7 @@ const Job = ({ job }) => {
                     </h2>
                     <p className="">Description: {capitalizeWords(job.description)}</p>
                     <p className="">Job Type: {capitalizeWords(job.job_type)}</p>
-                    <p className="">Job Type: {capitalizeWords(job.company)}</p>
+                    <p className="">Company: {capitalizeWords(job.company)}</p>
                     <p className="">Salary: {formatCurrency(job.salary)}</p>
                     <Button
                         iconLeft={() =>

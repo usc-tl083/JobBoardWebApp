@@ -23,8 +23,8 @@ let curDate = moment().format();
 class AuthService {
   async signUp(user) {
     try {
-      const { password, email, fullname, username } = user;
-      if (!email || !password || !fullname || !username) {
+      const { password, email, fullname, username, roles } = user;
+      if (!email || !password || !fullname || !username || !roles) {
         throw new ErrorHandler(401, "all fields required");
       }
 
@@ -46,6 +46,7 @@ class AuthService {
         const newUser = await createUserDb({
           ...user,
           password: hashedPassword,
+          roles,
         });
 
         const token = await this.signToken({

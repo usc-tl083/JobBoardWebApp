@@ -1,6 +1,7 @@
 const {
     getAllApplicationsDb,
     getApplicationByIdDb,
+    getEmployerApplicationsDb,
     createApplicationDb,
     updateApplicationDb,
     deleteApplicationDb,
@@ -30,6 +31,18 @@ class ApplicationService {
             throw new ErrorHandler(error.statusCode, error.message);
         }
     };
+
+    getEmployerApplications = async (id) => {
+        try {
+            const applications = await getEmployerApplicationsDb(id);
+            if (!applications) {
+                throw new ErrorHandler(404, "applications not found");
+            }
+            return applications;
+        } catch (error) {
+            throw new ErrorHandler(error.statusCode, error.message);
+        }
+    }
 
     getUserApplicationDetails = async (id) => {
         try {

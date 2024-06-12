@@ -21,6 +21,20 @@ class JobService {
         });
         return data;
     }
+
+    async createJob(title, description, requirements, salary, location, company, job_type, application_deadline) {
+        const { data } = await API.post("/job-postings", {
+            title,
+            description,
+            requirements,
+            salary,
+            location,
+            company,
+            job_type,
+            application_deadline,
+        })
+        return data;
+    }
 };
 
 export default new JobService();

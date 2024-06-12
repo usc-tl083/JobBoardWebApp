@@ -10,7 +10,6 @@ const JobDetails = () => {
   const { id } = useParams();
   const [job, setJob] = useState(null);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
@@ -24,7 +23,6 @@ const JobDetails = () => {
           replace: true,
         });
       } finally {
-        setIsLoading(false);
         setIsFetching(false);
       }
     }

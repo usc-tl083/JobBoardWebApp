@@ -3,10 +3,6 @@ const {
     getAllJobPostings,
     addJobPosting,
     getJobPosting,
-    getJobPostingByEmployerId,
-    getJobPostingByJobType,
-    getJobPostingByTitle,
-    getJobPostingsByLocation,
     updateJobPosting,
     deleteJobPosting,
 } = require("../controllers/jobPosting.controller");
@@ -15,11 +11,12 @@ const { createApplication, getUserApplicationDetails } = require("../controllers
 
 const verifyAdmin = require("../middleware/verifyAdmin");
 const verifyToken = require("../middleware/verifyToken");
+const verifyEmployer = require("../middleware/verifyEmployer");
 
 router
     .route("/")
     .get(getAllJobPostings)
-    .post(verifyToken, verifyAdmin, addJobPosting)
+    .post(verifyToken, verifyEmployer, addJobPosting)
 
 router
     .route("/apply")

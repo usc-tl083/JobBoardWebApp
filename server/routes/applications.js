@@ -2,6 +2,7 @@ const router = require("express").Router();
 const {
     getAllApplicaitons,
     getApplication,
+    getEmployerApplications,
     updateApplication,
     deleteApplication,
     createApplication,
@@ -16,6 +17,10 @@ router
     .route("/")
     .get(verifyToken, verifyAdmin, getAllApplicaitons)
     .post(verifyToken, createApplication)
+
+router
+    .route("/employer-applications")
+    .get(verifyToken, getEmployerApplications)
 
 router
     .route("/:id")

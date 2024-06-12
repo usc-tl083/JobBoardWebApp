@@ -19,7 +19,7 @@ const JobApplicationForm = () => {
         },
     });
 
-    const {id} = useParams()
+    const {id} = useParams();
 
     const onSubmit = async (data) => {
         const { resume, cover_letter} = data;
@@ -49,7 +49,7 @@ const JobApplicationForm = () => {
         <section className="grid place-items-center pt-4 mt-10">
             <div className="w-full md:w-1/2 shadow-md overflow-hidden sm:rounded-lg">
                 <div className="px-4 py-5 sm:px-6">
-                    <h3 className="text-lg leading-6 font-medium text-gray-900 capitalize">
+                    <h3 className="text-3xl leading-6 font-medium text-gray-900 capitalize">
                         Apply Now
                     </h3>
                 </div>
@@ -91,7 +91,7 @@ const JobApplicationForm = () => {
                                 Resume link required
                             </HelperText>
                         )}
-                        {errors?.resume && errors.resume.type === "pattern" && (
+                        {error?.resume && errors.resume.type === "pattern" && (
                             <HelperText className="mt-1 italic" valid={false}>
                                 Invalid resume link
                             </HelperText>

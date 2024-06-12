@@ -7,26 +7,27 @@ import {
     TableHeader,
     TableRow,
 } from "@windmill/react-ui";
-import { formatCurrency } from "helpers/formatCurrency";
-import { formatDate } from "helpers/formatDate";
 import Layout from "layout/Layout";
 import API from "api/axios.config";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { AlertTriangle } from "react-feather";
 import { Link } from "react-router-dom";
+import { formatDate } from "helpers/formatDate";
 
-const UserApplicationList = () => {
+const EmployerApplication = () => {
     const [applications, setApplications] = useState([]);
     const getUserApplications = async () => {
-        await API.get("/job-postings/get-user-applications")
+        await API.get("/applications/employer-applications")
             .then(response => {
-                setApplications(response.data)
+                setApplications(response.data);
             })
     };
 
     useEffect(() => {
-        getUserApplications()
+        getUserApplications();
     }, []);
+
+    console.log(applications);
 
     if (applications?.length === 0) {
         return (
@@ -36,7 +37,7 @@ const UserApplicationList = () => {
                     <AlertTriangle size={150} strokeWidth={1.75} />
                     <p>No Job Applications found.</p>
                     <Button tag={Link} to="/">
-                        Browse Jobs
+                        Go Back
                     </Button>
                 </div>
             </Layout>
@@ -50,12 +51,12 @@ const UserApplicationList = () => {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableCell>Title</TableCell>
-                            <TableCell>Company</TableCell>
-                            <TableCell>Location</TableCell>
-                            <TableCell>Employer</TableCell>
-                            <TableCell>Salary</TableCell>
-                            <TableCell>Job Type</TableCell>
+                            <TableCell>Application ID</TableCell>
+                            <TableCell>Job ID</TableCell>
+                            <TableCell>Job Title</TableCell>
+                            <TableCell>Seeker Name</TableCell>
+                            <TableCell>Cover Letter</TableCell>
+                            <TableCell>Resume</TableCell>
                             <TableCell>Status</TableCell>
                             <TableCell>Applied Date</TableCell>
                         </TableRow>
@@ -63,15 +64,15 @@ const UserApplicationList = () => {
                     <TableBody>
                         {applications?.map((item) => {
                             return (
-                                <TableRow key={item.job_id}>
+                                <TableRow key={item.application_id}>
+                                    <TableCell>{item.application_id}</TableCell>
+                                    <TableCell>{item.job_id}</TableCell>
                                     <TableCell>{item.job_title}</TableCell>
-                                    <TableCell>{item.job_company}</TableCell>
-                                    <TableCell>{item.job_location}</TableCell>
-                                    <TableCell>{item.employer}</TableCell>
-                                    <TableCell>{formatCurrency(item.job_salary)}</TableCell>
-                                    <TableCell>{item.job_type}</TableCell>
+                                    <TableCell>{item.seeker_username}</TableCell>
+                                    <TableCell>{item.cover_letter}</TableCell>
+                                    <TableCell>{item.resume}</TableCell>
                                     <TableCell>{item.status}</TableCell>
-                                    <TableCell>{formatDate(item.applied_date)}</TableCell>
+                                    <TableCell>{formatDate(item.application_created_at)}</TableCell>
                                 </TableRow>
                             );
                         })}
@@ -80,6 +81,6 @@ const UserApplicationList = () => {
             </TableContainer>
         </Layout>
     );
-}
+};
 
-export default UserApplicationList;
+export default EmployerApplication;

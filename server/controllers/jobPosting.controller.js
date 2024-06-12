@@ -1,3 +1,4 @@
+const { ErrorHandler } = require("../helpers/error");
 const jobPostingService = require("../services/jobPosting.service");
 
 const getAllJobPostings = async (req, res) => {
@@ -7,38 +8,53 @@ const getAllJobPostings = async (req, res) => {
 };
 
 const addJobPosting = async (req, res) => {
-    const newJobPosting = await jobPostingService.createJobPosting(req.body);
-    res.status(200).json(newJobPosting);
+    try {
+        const {title, description, requirements, salary, location, company, job_type, application_deadline} = req.body;
+        const jobPost = await jobPostingService.createJobPosting({
+            employer_id: req.user.id,
+            title,
+            description,
+            requirements,
+            salary,
+            location,
+            company,
+            job_type,
+            application_deadline,
+        });
+        res.status(200).json(jobPost);
+    } catch (error) {
+        throw new ErrorHandler(error.statusCode, "Job Post not created")
+    }
 };
 
-const getJobPosting = async(req, res) => {
+const getJobPosting = async (req, res) => {
     const { id } = req.params;
     const jobPosting = await jobPostingService.getJobPostingById(id);
     res.status(200).json(jobPosting)
 };
 
-const getJobPostingByEmployerId = async(req, res) => {
+const getJobPostingByEmployerId = async (req, res) => {
     const jobPosting = await jobPostingService.getJobPostingByEmployerId(req.params);
     res.status(200).json(jobPosting);
 };
 
-const getJobPostingByTitle = async(req, res) => {
+const getJobPostingByTitle = async (req, res) => {
     const jobPostings = await jobPostingService.getJobPostingByTitle(req.params);
     res.status(200).json(jobPostings);
 };
 
-const getJobPostingByJobType = async(req, res) => {
+const getJobPostingByJobType = async (req, res) => {
     const jobPostings = await jobPostingService.getJobPostingByJobType(req.params);
     res.status(200).json(jobPostings);
 };
 
-const getJobPostingsByLocation = async(req, res) => {
+const getJobPostingsByLocation = async (req, res) => {
     const jobPostings = await jobPostingService.getJobPostingsByLocation(req.params);
     res.status(200).json(jobPostings);
 };
 
-const updateJobPosting = async(req, res) => {
-    const { title, description, requirements, salary, location, company, job_type, application_deadline} = req.body;
+const updateJobPosting = async (req, res) => {
+    const { title, description, requirements, salary, location, company, job_type, application_deadline } = req.body;
     const { id } = req.params;
 
     const updateJobPosting = await jobPostingService.updateJobPosting({
