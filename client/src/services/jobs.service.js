@@ -13,6 +13,10 @@ class JobService {
         return API.get("/job-postings/get-user-applications");
     }
 
+    deleteJob(id) {
+        return API.delete(`/job-postings/${id}`);
+    }
+
     async applyJob(job_id, resume, cover_letter) {
         const { data } = await API.post("/job-postings/apply", {
             job_id,

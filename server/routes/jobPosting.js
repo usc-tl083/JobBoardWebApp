@@ -33,7 +33,7 @@ router
 router
     .route("/:id")
     .get(getJobPosting)
-    .delete(verifyToken, verifyAdmin, deleteJobPosting)
+    .delete(verifyToken, verifyEmployer, deleteJobPosting)
     .put(verifyToken, verifyAdmin, updateJobPosting)
 
 module.exports = router;

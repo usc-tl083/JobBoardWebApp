@@ -5,11 +5,13 @@ import { formatDate } from "helpers/formatDate";
 import Layout from "layout/Layout";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import jobsService from "services/jobs.service";
 import jobService from "services/jobs.service";
 
 const PostedJobDetails = () => {
   const { id } = useParams();
-  const { userData } = useUser()
+  const { userData } = useUser();
   const [job, setJob] = useState(null);
   const navigate = useNavigate();
   const [isFetching, setIsFetching] = useState(false);
@@ -30,6 +32,17 @@ const PostedJobDetails = () => {
     }
     fetchData();
   }, [id]);
+
+  const handleDelete = async () => {
+    try {
+      await jobsService.deleteJob(job?.job_id);
+      toast.success("Job Post deleted successfully")
+      navigate("/posted-jobs")
+    } catch (error) {
+      toast.error("Job Post cannot be deleted.")
+      return navigate("/posted-jobs")
+    }
+  };
 
   return (
     <Layout loading={isFetching} title={job?.title}>
@@ -64,6 +77,7 @@ const PostedJobDetails = () => {
                   <Link to={`/`}>
                   <Button
                     className="border-0 focus:outline-none rounded"
+                    onClick={handleDelete}
                   >
                     Delete Job
                   </Button>
