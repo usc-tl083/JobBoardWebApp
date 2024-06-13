@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Nav = () => {
     const navigate = useNavigate();
 
-    const { isLoggedIn, userData, logout } = useUser();
+    const { isLoggedIn, userData, logout, isEmployer } = useUser();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
 
@@ -51,7 +51,7 @@ const Nav = () => {
                     </>
                 )}
 
-                {isLoggedIn && userData?.roles?.includes('seeker') && (
+                {isLoggedIn && !isEmployer && (
                     <>
                         <li>
                             <Link to="/applications">
@@ -60,6 +60,8 @@ const Nav = () => {
                                     <FileText className="lg:hidden" />
                                 </Button>
                             </Link>
+                        </li>
+                        <li>
                             <Link to="/profile">
                                 <Button layout="link">
                                     <span className="lg:block hidden">Profile</span>
@@ -98,7 +100,7 @@ const Nav = () => {
                     </>
                 )}
 
-                {isLoggedIn && userData?.roles?.includes('employer') && (
+                {isLoggedIn && isEmployer && (
                     <>
                         <li>
                             <Link to="/create-job">
@@ -107,18 +109,24 @@ const Nav = () => {
                                     <FileText className="lg:hidden" />
                                 </Button>
                             </Link>
+                        </li>
+                        <li>
                             <Link to="/posted-jobs">
                                 <Button layout="link">
                                     <span className="lg:block hidden">Posted Jobs</span>
                                     <FileText className="lg:hidden" />
                                 </Button>
                             </Link>
+                        </li>
+                        <li>
                             <Link to="/employer-applications">
                                 <Button layout="link">
                                     <span className="lg:block hidden">Applications</span>
                                     <FileText className="lg:hidden" />
                                 </Button>
                             </Link>
+                        </li>
+                        <li>
                             <Link to="/profile">
                                 <Button layout="link">
                                     <span className="lg:block hidden">Profile</span>

@@ -27,6 +27,7 @@ const AccountForm = ({ setShowSettings, userData }) => {
             await updateUserData(data);
             setShowSettings(false);
             setIsSaving(false);
+            window.location.reload()
         } catch (error) {
             setIsSaving(false);
             setValidationError(error.response.data.message);

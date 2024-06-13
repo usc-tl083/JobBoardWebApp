@@ -10,3 +10,4 @@ export { default as UserApplicationList } from "./UserApplicationList";
 export { default as CreateJob } from "./CreateJob";
 export { default as EmployerApplication } from "./employerApplicationList";
 export { default as PostedJobs } from "./PostedJobs";
+export { default as PostedJobDetails } from "./PostedJobDetails"

@@ -30,7 +30,7 @@ const EmployerApplication = () => {
     if (applications?.length === 0) {
         return (
             <Layout title="Applications">
-                <h1 className="my-10 text-center text-4xl font-semibold">Applied Jobs</h1>
+                <h1 className="my-10 text-center text-4xl font-semibold">Job Applications</h1>
                 <div className="h-full flex flex-col justify-center items-center">
                     <AlertTriangle size={150} strokeWidth={1.75} />
                     <p>No Job Applications found.</p>
@@ -44,7 +44,7 @@ const EmployerApplication = () => {
 
     return (
         <Layout title="Applications">
-            <h1 className="my-10 text-center text-4xl font-semibold">Applied Jobs</h1>
+            <h1 className="my-10 text-center text-4xl font-semibold">Job Applications</h1>
             <TableContainer>
                 <Table>
                     <TableHeader>
