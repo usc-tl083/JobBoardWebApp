@@ -1,9 +1,11 @@
-import { Card } from "@windmill/react-ui";
+import { Card, Button} from "@windmill/react-ui";
 import PostedJob from "components/PostedJob";
 import API from "api/axios.config";
 import { useUser } from "context/UserContext";
+import { AlertTriangle } from "react-feather";
 import Layout from "layout/Layout";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const PostedJobs = () => {
     const { userData } = useUser();
@@ -19,6 +21,21 @@ const PostedJobs = () => {
     useEffect(() => {
         getPostedJobs();
     }, []);
+
+    if (jobPost?.length === 0) {
+        return (
+            <Layout title="Posted Jobs">
+                <h1 className="my-10 text-center text-4xl font-semibold">Job Posts</h1>
+                <div className="h-full flex flex-col justify-center items-center">
+                    <AlertTriangle size={150} strokeWidth={1.75} />
+                    <p>No Job Posts found.</p>
+                    <Button tag={Link} to="/create-job">
+                        Create Job Post
+                    </Button>
+                </div>
+            </Layout>
+        )
+    }
 
     if (userData?.roles?.includes("employer")) {
         return (
