@@ -108,7 +108,7 @@ describe("User controller", () => {
     describe("Get user by id", () => {
         it("should return a user if user is an admin", async () => {
             const response = await api
-                .get(`/api/users/${seekerAuth.user_id}`)
+                .get(`/api/users/${adminAuth.user_id}`)
                 .expect(200)
                 .set("auth-token", adminAuth.token);
 
@@ -134,6 +134,7 @@ describe("User controller", () => {
                 password: "secret",
                 fullname: "test db",
                 username: "test",
+                roles: ["seeker"]
             });
 
             const anotherSeeker = await api.post("/api/auth/login").send({

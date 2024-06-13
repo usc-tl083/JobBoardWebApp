@@ -57,29 +57,29 @@ CREATE TABLE public.applications
 );
 
 
--- seed data for creating admin users
-INSERT INTO public.users (username, email, password, fullname, roles, address, city, state, country)
-VALUES ('admin1', 'admin1@email.com', '$2b$10$D1zFoELsks6m.XRrZdqzm.jsi2w8pE3o7.uTx4QzDOA6SDxXDZLuO', 'Admin User1', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
-INSERT INTO public.users (username, email, password, fullname, roles, address, city, state, country)
-VALUES ('admin2', 'admin2@email.com', '$2b$10$D1zFoELsks6m.XRrZdqzm.jsi2w8pE3o7.uTx4QzDOA6SDxXDZLuO', 'Admin User2', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
-INSERT INTO public.users (username, email, password, fullname, roles, address, city, state, country)
-VALUES ('admin3', 'admin3@email.com', '$2b$10$D1zFoELsks6m.XRrZdqzm.jsi2w8pE3o7.uTx4QzDOA6SDxXDZLuO', 'Admin User3', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
+-- -- seed data for creating admin users
+-- INSERT INTO public.users (username, email, password, fullname, roles, address, city, state, country)
+-- VALUES ('admin1', 'admin1@email.com', '$2b$10$D1zFoELsks6m.XRrZdqzm.jsi2w8pE3o7.uTx4QzDOA6SDxXDZLuO', 'Admin User1', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
+-- INSERT INTO public.users (username, email, password, fullname, roles, address, city, state, country)
+-- VALUES ('admin2', 'admin2@email.com', '$2b$10$D1zFoELsks6m.XRrZdqzm.jsi2w8pE3o7.uTx4QzDOA6SDxXDZLuO', 'Admin User2', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
+-- INSERT INTO public.users (username, email, password, fullname, roles, address, city, state, country)
+-- VALUES ('admin3', 'admin3@email.com', '$2b$10$D1zFoELsks6m.XRrZdqzm.jsi2w8pE3o7.uTx4QzDOA6SDxXDZLuO', 'Admin User3', '{admin}', '123 Admin St', 'Admin City', 'Admin State', 'Admin Country');
 
--- seed data for creating seeker users
-INSERT INTO public.users (username, email, password, fullname, roles)
-VALUES ('seeker1', 'seeker1@email.com', '$2b$10$i10z/eFYeD.wCb9zCgTtY.HHg0WFR1Tf7QZpAYgyzzHGc94y6WWfy', 'Seeker User1', '{seeker}');
-INSERT INTO public.users (username, email, password, fullname, roles)
-VALUES ('seeker2', 'seeker2@email.com', '$2b$10$i10z/eFYeD.wCb9zCgTtY.HHg0WFR1Tf7QZpAYgyzzHGc94y6WWfy', 'Seeker User2', '{seeker}');
-INSERT INTO public.users (username, email, password, fullname, roles)
-VALUES ('seeker3', 'seeker3@email.com', '$2b$10$i10z/eFYeD.wCb9zCgTtY.HHg0WFR1Tf7QZpAYgyzzHGc94y6WWfy', 'Seeker User3', '{seeker}');
+-- -- seed data for creating seeker users
+-- INSERT INTO public.users (username, email, password, fullname, roles)
+-- VALUES ('seeker1', 'seeker1@email.com', '$2b$10$i10z/eFYeD.wCb9zCgTtY.HHg0WFR1Tf7QZpAYgyzzHGc94y6WWfy', 'Seeker User1', '{seeker}');
+-- INSERT INTO public.users (username, email, password, fullname, roles)
+-- VALUES ('seeker2', 'seeker2@email.com', '$2b$10$i10z/eFYeD.wCb9zCgTtY.HHg0WFR1Tf7QZpAYgyzzHGc94y6WWfy', 'Seeker User2', '{seeker}');
+-- INSERT INTO public.users (username, email, password, fullname, roles)
+-- VALUES ('seeker3', 'seeker3@email.com', '$2b$10$i10z/eFYeD.wCb9zCgTtY.HHg0WFR1Tf7QZpAYgyzzHGc94y6WWfy', 'Seeker User3', '{seeker}');
 
--- seed data for creating employer users
-INSERT INTO public.users (username, email, password, fullname, roles)
-VALUES ('employer1', 'employer1@email.com', '$2b$10$CKPLoZu369FqB9nVvoeUauBekrAHfYX2ExbUAA.LnT8M5lqQ.RprO', 'Employer User1', '{employer}');
-INSERT INTO public.users (username, email, password, fullname, roles)
-VALUES ('employer2', 'employer2@email.com', '$2b$10$CKPLoZu369FqB9nVvoeUauBekrAHfYX2ExbUAA.LnT8M5lqQ.RprO', 'Employer User2', '{employer}');
-INSERT INTO public.users (username, email, password, fullname, roles)
-VALUES ('employer3', 'employer3@email.com', '$2b$10$CKPLoZu369FqB9nVvoeUauBekrAHfYX2ExbUAA.LnT8M5lqQ.RprO', 'Employer User3', '{employer}');
+-- -- seed data for creating employer users
+-- INSERT INTO public.users (username, email, password, fullname, roles)
+-- VALUES ('employer1', 'employer1@email.com', '$2b$10$CKPLoZu369FqB9nVvoeUauBekrAHfYX2ExbUAA.LnT8M5lqQ.RprO', 'Employer User1', '{employer}');
+-- INSERT INTO public.users (username, email, password, fullname, roles)
+-- VALUES ('employer2', 'employer2@email.com', '$2b$10$CKPLoZu369FqB9nVvoeUauBekrAHfYX2ExbUAA.LnT8M5lqQ.RprO', 'Employer User2', '{employer}');
+-- INSERT INTO public.users (username, email, password, fullname, roles)
+-- VALUES ('employer3', 'employer3@email.com', '$2b$10$CKPLoZu369FqB9nVvoeUauBekrAHfYX2ExbUAA.LnT8M5lqQ.RprO', 'Employer User3', '{employer}');
 
 -- -- seed data for creting job posts
 -- INSERT INTO public.job_postings (job_id, employer_id, title, description, requirements, salary, location, company, job_type, application_deadline, created_at) VALUES

@@ -15,6 +15,7 @@ describe("/api/auth/signup", () => {
             password: "secret",
             fullname: "test db",
             username: "test",
+            roles: ['seeker']
         });
         expect(res.body).toHaveProperty("token");
         expect(res.statusCode).toBe(201);
@@ -37,6 +38,7 @@ describe("/api/auth/signup", () => {
                     password: "secret",
                     fullname: "test db",
                     username: "test",
+                    roles: ['seeker']
                 })
                 .expect(401);
 
@@ -52,6 +54,7 @@ describe("/api/auth/signup", () => {
                     password: "secret",
                     fullname: "test db",
                     username: "newtest",
+                    roles: ['seeker']
                 })
                 .expect(401);
 
@@ -68,6 +71,7 @@ describe("/api/auth/login", () => {
             password: "secret",
             fullname: "test db",
             username: "test",
+            roles: ['seeker']
         });
     });
 
