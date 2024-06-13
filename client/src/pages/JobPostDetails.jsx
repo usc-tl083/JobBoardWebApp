@@ -1,4 +1,5 @@
 import { Button } from "@windmill/react-ui";
+import { useUser } from "context/UserContext";
 import { formatCurrency } from "helpers/formatCurrency";
 import { formatDate } from "helpers/formatDate";
 import Layout from "layout/Layout";
@@ -8,6 +9,7 @@ import jobService from "services/jobs.service";
 
 const JobDetails = () => {
   const { id } = useParams();
+  const { userData } = useUser()
   const [job, setJob] = useState(null);
   const navigate = useNavigate();
   const [isFetching, setIsFetching] = useState(false);
@@ -58,13 +60,15 @@ const JobDetails = () => {
                 <span className="title-font font-semibold">Requirements:</span> {job?.requirements}
               </p>
               <div className="flex mt-4 justify-between">
-                <Link to={`/job-postings/${job?.job_id}/apply`}>
+                {!userData?.roles?.includes("employer") && (
+                  <Link to={`/job-postings/${job?.job_id}/apply`}>
                   <Button
                     className="border-0 focus:outline-none rounded"
                   >
                     Apply Now
                   </Button>
                 </Link>
+                )}
               </div>
             </div>
           </div>

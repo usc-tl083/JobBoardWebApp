@@ -5,11 +5,15 @@ const getJobPostings = require("./getJobPostings");
 const updateJobPosting = require("./updateJobPosting");
 const applyJob = require("./applyJob");
 const getUserApplications = require('./getUserApplications');
+const getJobPostingByEmployer = require('./getJobPostingByEmployer');
 
 module.exports = {
     "/job-postings": {
         ...getJobPostings,
         ...createJobPosting,
+    },
+    "/job-postings/get-posted-jobs": {
+        ...getJobPostingByEmployer,
     },
     "/job-postings/apply": {
         ...applyJob,

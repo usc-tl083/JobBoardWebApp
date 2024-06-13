@@ -51,7 +51,7 @@ const Login = () => {
         return <Navigate to={state?.from || "/"} />;
     }
     if (isLoggedIn && userData?.roles?.includes("employer") ) {
-        return <Navigate to={state?.from || "/profile"} />;
+        return <Navigate to={state?.from || "/posted-jobs"} />;
     }
     if (redirectToReferrer) {
         return <Navigate to={state?.from || "/"} />;

@@ -107,6 +107,12 @@ const Nav = () => {
                                     <FileText className="lg:hidden" />
                                 </Button>
                             </Link>
+                            <Link to="/posted-jobs">
+                                <Button layout="link">
+                                    <span className="lg:block hidden">Posted Jobs</span>
+                                    <FileText className="lg:hidden" />
+                                </Button>
+                            </Link>
                             <Link to="/employer-applications">
                                 <Button layout="link">
                                     <span className="lg:block hidden">Applications</span>

@@ -27,8 +27,6 @@ const EmployerApplication = () => {
         getUserApplications();
     }, []);
 
-    console.log(applications);
-
     if (applications?.length === 0) {
         return (
             <Layout title="Applications">

@@ -34,7 +34,7 @@ const getJobPosting = async (req, res) => {
 };
 
 const getJobPostingByEmployerId = async (req, res) => {
-    const jobPosting = await jobPostingService.getJobPostingByEmployerId(req.params);
+    const jobPosting = await jobPostingService.getJobPostingByEmployerId(req.user.id);
     res.status(200).json(jobPosting);
 };
 

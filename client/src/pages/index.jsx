@@ -9,3 +9,4 @@ export { default as JobApplication } from "./JobApplication";
 export { default as UserApplicationList } from "./UserApplicationList";
 export { default as CreateJob } from "./CreateJob";
 export { default as EmployerApplication } from "./employerApplicationList";
+export { default as PostedJobs } from "./PostedJobs";

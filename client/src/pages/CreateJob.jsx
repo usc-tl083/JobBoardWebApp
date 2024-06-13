@@ -35,7 +35,7 @@ const CreateJob = () => {
     }
 
     if (redirectToReferrer) {
-        return <Navigate to={state?.from || "/"} />
+        return <Navigate to={state?.from || "/posted-jobs"} />
     }
 
     return (
@@ -151,14 +151,14 @@ const CreateJob = () => {
                         </Label>
                         <Label className="px-4 py-1">
                             <span className="text-sm font-medium text-gray-500 w-1/4">Job Type</span>
-                            <Select
+                            <Select defaultValue={'full-time'}
                                 name="job_type"
                                 className="w-full px-4 py-2 mt-2 text-gray-darker bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                                 {...register("job_type", {
                                     required: "Job Type is required"
                                 })}
                             >
-                                <option value="full-time" seleccted="selected">Full-Time</option>
+                                <option value="full-time">Full-Time</option>
                                 <option value="part-time">Part-Time</option>
                                 <option value="freelance">Freelance</option>
                             </Select>

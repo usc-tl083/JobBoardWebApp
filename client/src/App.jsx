@@ -12,6 +12,7 @@ import {
   UserApplicationList,
   CreateJob,
   EmployerApplication,
+  PostedJobs,
 } from "pages";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
@@ -34,6 +35,7 @@ function App() {
           <Route path="/job-postings/:id/apply" element={<JobApplication />} />
           <Route path="/applications" element={<UserApplicationList />} />
           <Route path="/employer-applications" element={<EmployerApplication />} />
+          <Route path="/posted-jobs" element={<PostedJobs />} />
           <Route path="/create-job" element={<CreateJob />} />
         </Route>
 

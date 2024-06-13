@@ -55,7 +55,7 @@ const Register = () => {
         return <Navigate to={state?.from || "/"} />;
     }
     if (isLoggedIn && userData?.roles?.includes("employer")) {
-        return <Navigate to={state?.from || "/profile"} />;
+        return <Navigate to={state?.from || "/"} />;
     }
     return (
         <Layout title="Create account">
@@ -138,11 +138,12 @@ const Register = () => {
                         </Label>
                         <Select
                             name="roles"
+                            defaultValue={"seeker"}
                             className="shadow rounded w-full py-2 px-3 text-grey-darker"
                             {...register("roles")}
                         >
-                            <option selected="selected">Seeker</option>
-                            <option>Employer</option>
+                            <option value="seeker">Seeker</option>
+                            <option value="employer">Employer</option>
                         </Select>
                     </div>
                     {errors.roles && (
