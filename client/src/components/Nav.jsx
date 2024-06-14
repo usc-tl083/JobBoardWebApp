@@ -1,7 +1,7 @@
 import { Button, Dropdown, DropdownItem, Transition } from "@windmill/react-ui";
 import { useUser } from "context/UserContext";
 import { useState, useRef, useEffect } from "react";
-import { LogOut, FileText, User } from "react-feather";
+import { LogOut, FileText, User, PlusSquare, Archive } from "react-feather";
 import { Link, useNavigate } from "react-router-dom";
 
 const Nav = () => {
@@ -106,7 +106,7 @@ const Nav = () => {
                             <Link to="/create-job">
                                 <Button layout="link">
                                     <span className="lg:block hidden">Create Job</span>
-                                    <FileText className="lg:hidden" />
+                                    <PlusSquare className="lg:hidden" />
                                 </Button>
                             </Link>
                         </li>
@@ -114,7 +114,7 @@ const Nav = () => {
                             <Link to="/posted-jobs">
                                 <Button layout="link">
                                     <span className="lg:block hidden">Posted Jobs</span>
-                                    <FileText className="lg:hidden" />
+                                    <Archive className="lg:hidden" />
                                 </Button>
                             </Link>
                         </li>
