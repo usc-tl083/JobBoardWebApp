@@ -62,7 +62,7 @@ const signupMail = async (to) => {
 
         // const emailTransporter = await createTransporter();
         // await emailTransporter.sendMail(message);
-        logger.log(message)
+        logger.info(message)
     } catch (error) {
         logger.error(error);
     }
@@ -91,8 +91,8 @@ const forgotPasswordMail = async (token, email) => {
 
         // const emailTransporter = await createTransporter();
         // return await emailTransporter.sendMail(message);
-        logger.log(reset_url);
-        logger.log(message);
+        logger.info(reset_url);
+        logger.info(message);
     } catch (error) {
         logger.error(error);
         throw new ErrorHandler(500, error.message);
@@ -110,7 +110,7 @@ const resetPasswordMail = async (email) => {
 
         // const emailTransporter = await createTransporter();
         // await emailTransporter.sendMail(message);
-        logger.log(message);
+        logger.info(message);
     } catch (error) {
         logger.error(error);
         throw new ErrorHandler(500, error.message);

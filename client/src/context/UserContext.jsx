@@ -67,7 +67,7 @@ const UserProvider = ({ children }) => {
                 authData,
                 setAuthData,
                 updateUserData,
-                isEmployer: userData?.roles.includes("employer")
+                isEmployer: userData?.roles?.includes("employer")
             }}
         >
             <WithAxios>{children}</WithAxios>

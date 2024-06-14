@@ -79,7 +79,7 @@ const PostedJobDetails = () => {
                     className="border-0 focus:outline-none rounded"
                     onClick={handleDelete}
                   >
-                    Delete Job
+                    Delete Job Post
                   </Button>
                 </Link>
                 )}

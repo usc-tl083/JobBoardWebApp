@@ -12,7 +12,7 @@ const Register = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const { state } = useLocation();
-    const { isLoggedIn, userData, setUserState } = useUser();
+    const { isLoggedIn, isEmployer, setUserState } = useUser();
     const {
         register,
         formState: { errors },
@@ -51,10 +51,7 @@ const Register = () => {
         }
     };
 
-    if (isLoggedIn && userData?.roles?.includes("seeker")) {
-        return <Navigate to={state?.from || "/"} />;
-    }
-    if (isLoggedIn && userData?.roles?.includes("employer")) {
+    if (isLoggedIn) {
         return <Navigate to={state?.from || "/"} />;
     }
     return (
