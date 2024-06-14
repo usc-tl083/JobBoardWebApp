@@ -18,17 +18,12 @@ const getAllApplicaitons = async (req, res) => {
 
 const getApplication = async (req, res) => {
     const { id } = req.params;
-    if (1 == 1) {
-        //todo: get applicaiton for that user
-        //for now: getting every application by id
-        try {
-            const application = await applicationService.getApplicationById(id);
-            return res.status(200).json(application);
-        } catch (error) {
-            throw new ErrorHandler(error.statusCode, "Application not found");
-        }
+    try {
+        const application = await applicationService.getApplicationById(id);
+        return res.status(200).json(application);
+    } catch (error) {
+        throw new ErrorHandler(error.statusCode, "Application not found");
     }
-    throw new ErrorHandler(401, "Unauthorized");
 };
 
 const getUserApplicationDetails = async (req, res) => {
@@ -44,7 +39,7 @@ const getUserApplicationDetails = async (req, res) => {
 }
 
 const getEmployerApplications = async (req, res) => {
-    if(req.user.roles.includes("employer")) {
+    if (req.user.roles.includes("employer")) {
         try {
             const applications = await applicationService.getEmployerApplications(req.user.id);
             return res.status(200).json(applications);
@@ -78,21 +73,16 @@ const createApplication = async (req, res) => {
 const updateApplication = async (req, res) => {
     const { resume, cover_letter } = req.body;
     const { id } = req.params;
-    if (1 == 1) {
-        try {
-            const updateApplication = await applicationService.updateApplication({
-                resume,
-                cover_letter,
-                status: "applied",
-                id,
-            })
-            res.status(200).json(updateApplication);
-        } catch (error) {
-            throw new ErrorHandler(error.statusCode, "Application not found");
-        }
-    }
-    else {
-        throw new ErrorHandler(401, "Unauthorized");
+    try {
+        const updateApplication = await applicationService.updateApplication({
+            resume,
+            cover_letter,
+            status: "applied",
+            id,
+        })
+        res.status(200).json(updateApplication);
+    } catch (error) {
+        throw new ErrorHandler(error.statusCode, "Application not found");
     }
 };
 
@@ -100,7 +90,7 @@ const deleteApplication = async (req, res) => {
     const { id } = req.params;
     if (+id === req.user.id || req.user.roles.includes("admin")) {
         try {
-            const result = await applicationService.deleteApplicaiton(id);
+            await applicationService.deleteApplicaiton(id);
             res.status(200).json("Application deleted successfully.");
         } catch (error) {
             throw new ErrorHandler(error.statusCode, error.message);

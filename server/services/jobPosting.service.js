@@ -3,9 +3,6 @@ const {
     createJobPostingDb,
     getJobPostingByIdDb,
     getJobPostingByEmployerIdDb,
-    getJobPostingsByTitleDb,
-    getJobPostingsByJobTypeDb,
-    getJobPostingsByLocationDb,
     updateJobPostingDb,
     deleteJobPostingDb,
 } = require("../db/jobPosting.db");
@@ -46,43 +43,7 @@ class JobPostingService {
         try {
             const jobPosting = await getJobPostingByEmployerIdDb(id);
             if (!jobPosting) {
-                throw new ErrorHandler(error.statusCode, "job post not found");
-            }
-            return jobPosting;
-        } catch (error) {
-            throw new ErrorHandler(error.statusCode, error.message);
-        }
-    };
-
-    getJobPostingByTitle = async (title) => {
-        try {
-            const jobPosting = await getJobPostingsByTitleDb(title);
-            if (!jobPosting) {
-                throw new ErrorHandler(error.statusCode, "job post not found");
-            }
-            return jobPosting;
-        } catch (error) {
-            throw new ErrorHandler(error.statusCode, error.message);
-        }
-    };
-
-    getJobPostingByJobType = async (job_type) => {
-        try {
-            const jobPosting = await getJobPostingsByJobTypeDb(job_type);
-            if (!jobPosting) {
-                throw new ErrorHandler(error.statusCode, "job post not found");
-            }
-            return jobPosting;
-        } catch (error) {
-            throw new ErrorHandler(error.statusCode, error.message);
-        }
-    };
-
-    getJobPostingsByLocation = async (location) => {
-        try {
-            const jobPosting = await getJobPostingsByLocationDb(location);
-            if (!jobPosting) {
-                throw new ErrorHandler(error.statusCode, "job post not found");
+                throw new ErrorHandler(404, "job post not found");
             }
             return jobPosting;
         } catch (error) {
@@ -113,6 +74,6 @@ class JobPostingService {
             throw new ErrorHandler(error.statusCode, error.message);
         }
     };
-};
+}
 
 module.exports = new JobPostingService();

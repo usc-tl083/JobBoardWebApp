@@ -32,30 +32,6 @@ const getJobPostingByEmployerIdDb = async (id) => {
     return job_postings;
 };
 
-const getJobPostingsByTitleDb = async (title) => {
-    const { rows: job_postings } = await pool.query(
-        "select * from job_postings where lower(title) = lower($1)",
-        [title]
-    );
-    return job_postings;
-};
-
-const getJobPostingsByJobTypeDb = async (type) => {
-    const { rows: job_postings } = await pool.query(
-        "select * from job_postings where lower(job_type) = lower($1)",
-        [type]
-    );
-    return job_postings;
-};
-
-const getJobPostingsByLocationDb = async (location) => {
-    const { rows: job_postings } = await pool.query(
-        "select * from job_postings where lower(location) = lower($1)",
-        [location]
-    );
-    return job_postings;
-};
-
 const updateJobPostingDb = async ({
     title,
     description,
@@ -88,9 +64,6 @@ module.exports = {
     createJobPostingDb,
     getJobPostingByIdDb,
     getJobPostingByEmployerIdDb,
-    getJobPostingsByTitleDb,
-    getJobPostingsByJobTypeDb,
-    getJobPostingsByLocationDb,
     updateJobPostingDb,
     deleteJobPostingDb,
 };

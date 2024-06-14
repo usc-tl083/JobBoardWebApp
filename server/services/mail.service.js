@@ -49,7 +49,7 @@ const url =
         ? "https://job-seeker.netlify.app"
         : "http://localhost:3000";
 
-const signupMail = async (to, name) => {
+const signupMail = async (to) => {
     try {
         const message = {
             from: "jobseeker@email.com",
@@ -62,7 +62,7 @@ const signupMail = async (to, name) => {
 
         // const emailTransporter = await createTransporter();
         // await emailTransporter.sendMail(message);
-        console.log(message)
+        logger.log(message)
     } catch (error) {
         logger.error(error);
     }
@@ -91,7 +91,8 @@ const forgotPasswordMail = async (token, email) => {
 
         // const emailTransporter = await createTransporter();
         // return await emailTransporter.sendMail(message);
-        console.log(reset_url);
+        logger.log(reset_url);
+        logger.log(message);
     } catch (error) {
         logger.error(error);
         throw new ErrorHandler(500, error.message);
@@ -109,7 +110,7 @@ const resetPasswordMail = async (email) => {
 
         // const emailTransporter = await createTransporter();
         // await emailTransporter.sendMail(message);
-        console.log(message);
+        logger.log(message);
     } catch (error) {
         logger.error(error);
         throw new ErrorHandler(500, error.message);
@@ -120,4 +121,5 @@ module.exports = {
     signupMail,
     resetPasswordMail,
     forgotPasswordMail,
+    createTransporter,
 };

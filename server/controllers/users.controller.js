@@ -76,7 +76,7 @@ const deleteUser = async (req, res) => {
     const { id } = req.params;
     if (+id === req.user.id || req.user.roles.includes("admin")) {
         try {
-            const result = await userService.deleteUser(id);
+            await userService.deleteUser(id);
             res.status(200).json("User deleted successfully.");
         } catch (error) {
             throw new ErrorHandler(error.statusCode, error.message);

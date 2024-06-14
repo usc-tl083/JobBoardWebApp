@@ -84,6 +84,6 @@ class ApplicationService {
         }
     };
 
-};
+}
 
 module.exports = new ApplicationService()
